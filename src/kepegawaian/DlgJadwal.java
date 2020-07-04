@@ -461,7 +461,6 @@ public class DlgJadwal extends javax.swing.JDialog {
         jLabel3.setBounds(0, 12, 70, 23);
 
         nmdokter.setEditable(false);
-        nmdokter.setHighlighter(null);
         nmdokter.setName("nmdokter"); // NOI18N
         nmdokter.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -487,7 +486,6 @@ public class DlgJadwal extends javax.swing.JDialog {
         jLabel10.setBounds(300, 72, 66, 23);
 
         TPoli.setEditable(false);
-        TPoli.setHighlighter(null);
         TPoli.setName("TPoli"); // NOI18N
         TPoli.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -590,7 +588,6 @@ public class DlgJadwal extends javax.swing.JDialog {
         panelBiasa1.add(btnDokter);
         btnDokter.setBounds(591, 12, 28, 23);
 
-        kddokter.setHighlighter(null);
         kddokter.setName("kddokter"); // NOI18N
         kddokter.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -600,7 +597,6 @@ public class DlgJadwal extends javax.swing.JDialog {
         panelBiasa1.add(kddokter);
         kddokter.setBounds(74, 12, 115, 23);
 
-        KdPoli.setHighlighter(null);
         KdPoli.setName("KdPoli"); // NOI18N
         KdPoli.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -627,7 +623,6 @@ public class DlgJadwal extends javax.swing.JDialog {
         panelBiasa1.add(jLabel12);
         jLabel12.setBounds(0, 72, 70, 23);
 
-        Kuota.setHighlighter(null);
         Kuota.setName("Kuota"); // NOI18N
         Kuota.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {

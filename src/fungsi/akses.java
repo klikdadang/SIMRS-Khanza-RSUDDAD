@@ -141,7 +141,8 @@ public final class akses {
             zis_atap_rumah_penerima_dankes=false,zis_kepemilikan_rumah_penerima_dankes=false,zis_kamar_mandi_penerima_dankes=false,
             zis_dapur_rumah_penerima_dankes=false,zis_kursi_rumah_penerima_dankes=false,zis_kategori_phbs_penerima_dankes=false,
             zis_elektronik_penerima_dankes=false,zis_ternak_penerima_dankes=false,zis_jenis_simpanan_penerima_dankes=false,penilaian_awal_keperawatan_anak=false,
-            zis_kategori_asnaf_penerima_dankes=false,master_masalah_keperawatan_anak=false,master_imunisasi=false;
+            zis_kategori_asnaf_penerima_dankes=false,master_masalah_keperawatan_anak=false,master_imunisasi=false,zis_patologis_penerima_dankes=false,
+            pcare_cek_kartu=false;
     
     public static void setData(String user, String pass) {
        try {                
@@ -810,6 +811,8 @@ public final class akses {
                         akses.zis_kategori_asnaf_penerima_dankes=true;
                         akses.master_masalah_keperawatan_anak=true;
                         akses.master_imunisasi=true;
+                        akses.zis_patologis_penerima_dankes=true;
+                        akses.pcare_cek_kartu=true;
                     }else if(rs2.getRow()>=1){   
                         rs2.beforeFirst();
                         rs2.next();
@@ -1462,6 +1465,8 @@ public final class akses {
                         akses.zis_kategori_asnaf_penerima_dankes=rs2.getBoolean("zis_kategori_asnaf_penerima_dankes");
                         akses.master_masalah_keperawatan_anak=rs2.getBoolean("master_masalah_keperawatan_anak");
                         akses.master_imunisasi=rs2.getBoolean("master_imunisasi");
+                        akses.zis_patologis_penerima_dankes=rs2.getBoolean("zis_patologis_penerima_dankes");
+                        akses.pcare_cek_kartu=rs2.getBoolean("pcare_cek_kartu");
                     }else if((rs.getRow()==0)&&(rs2.getRow()==0)){
                         akses.kode="";                  
                         akses.penyakit= false;
@@ -2112,6 +2117,8 @@ public final class akses {
                         akses.zis_kategori_asnaf_penerima_dankes=false;
                         akses.master_masalah_keperawatan_anak=false;
                         akses.master_imunisasi=false;
+                        akses.zis_patologis_penerima_dankes=false;
+                        akses.pcare_cek_kartu=false;
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -2816,4 +2823,6 @@ public final class akses {
     public static boolean getzis_kategori_asnaf_penerima_dankes(){return akses.zis_kategori_asnaf_penerima_dankes;}
     public static boolean getmaster_masalah_keperawatan_anak(){return akses.master_masalah_keperawatan_anak;}
     public static boolean getmaster_imunisasi(){return akses.master_imunisasi;}
+    public static boolean getzis_patologis_penerima_dankes(){return akses.zis_patologis_penerima_dankes;}
+    public static boolean getpcare_cek_kartu(){return akses.pcare_cek_kartu;}
 }   

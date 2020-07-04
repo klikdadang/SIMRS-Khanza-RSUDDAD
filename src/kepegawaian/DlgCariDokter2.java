@@ -43,7 +43,7 @@ public final class DlgCariDokter2 extends javax.swing.JDialog {
     private ResultSet rs;
     private Calendar cal = Calendar.getInstance();
     private int day = cal.get(Calendar.DAY_OF_WEEK);
-    private String hari="",poli="";
+    public String hari="",poli="";
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
