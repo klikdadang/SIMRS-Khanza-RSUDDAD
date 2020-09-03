@@ -19,6 +19,7 @@ import fungsi.validasi;
 import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -231,7 +232,7 @@ public class DlgJadwal extends javax.swing.JDialog {
         jLabel12 = new widget.Label();
         Kuota = new widget.TextBox();
         jLabel13 = new widget.Label();
-        cmbAktif = new javax.swing.JComboBox<>();
+        cmbAktif = new widget.ComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -639,6 +640,16 @@ public class DlgJadwal extends javax.swing.JDialog {
 
         cmbAktif.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aktif", "Tidak Aktif" }));
         cmbAktif.setName("cmbAktif"); // NOI18N
+		cmbAktif.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbAktifItemStateChanged(evt);
+            }
+        });
+        cmbAktif.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmbAktifKeyPressed(evt);
+            }
+        });
         panelBiasa1.add(cmbAktif);
         cmbAktif.setBounds(220, 72, 80, 23);
 
@@ -688,6 +699,14 @@ public class DlgJadwal extends javax.swing.JDialog {
     private void cmbDtk2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbDtk2KeyPressed
         Valid.pindah(evt,cmbMnt2,Kuota);
 }//GEN-LAST:event_cmbDtk2KeyPressed
+
+    private void cmbAktifItemStateChanged(java.awt.event.ItemEvent evt) {                                         
+        // TODO add your handling code here:
+}                                        
+
+    private void cmbAktifKeyPressed(java.awt.event.KeyEvent evt) {                                   
+        Valid.pindah(evt,kddokter,cmbJam1);
+}                                  
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
         if(nmdokter.getText().trim().equals("")){
@@ -957,7 +976,7 @@ private void BtnPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private widget.TextBox TCari;
     private widget.TextBox TPoli;
     private widget.Button btnDokter;
-    private javax.swing.JComboBox<String> cmbAktif;
+    private widget.ComboBox cmbAktif;
     private widget.ComboBox cmbDtk1;
     private widget.ComboBox cmbDtk2;
     private widget.ComboBox cmbHari;
