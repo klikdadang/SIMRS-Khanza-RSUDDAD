@@ -1525,7 +1525,6 @@ public class DlgPasien extends javax.swing.JDialog {
         jLabel22 = new widget.Label();
         DTPDaftar = new widget.Tanggal();
         ChkDaftar = new widget.CekBox();
-        BtnKelurahan1 = new widget.Button();
         TKtp = new widget.TextBox();
         jLabel15 = new widget.Label();
         Pekerjaan = new widget.TextBox();
@@ -3136,7 +3135,7 @@ public class DlgPasien extends javax.swing.JDialog {
         FormInput.add(CMbGd);
         CMbGd.setBounds(410, 72, 70, 23);
 
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2020" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-09-2020" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -3314,6 +3313,7 @@ public class DlgPasien extends javax.swing.JDialog {
         FormInput.add(jLabel28);
         jLabel28.setBounds(0, 250, 100, 23);
 
+        TNoPeserta.setComponentPopupMenu(jPopupMenu2);
         TNoPeserta.setHighlighter(null);
         TNoPeserta.setName("TNoPeserta"); // NOI18N
         TNoPeserta.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -3359,7 +3359,7 @@ public class DlgPasien extends javax.swing.JDialog {
         FormInput.add(jLabel22);
         jLabel22.setBounds(260, 280, 90, 23);
 
-        DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2020" }));
+        DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-09-2020" }));
         DTPDaftar.setDisplayFormat("dd-MM-yyyy");
         DTPDaftar.setName("DTPDaftar"); // NOI18N
         DTPDaftar.setOpaque(false);
@@ -3384,17 +3384,6 @@ public class DlgPasien extends javax.swing.JDialog {
         FormInput.add(ChkDaftar);
         ChkDaftar.setBounds(460, 280, 23, 23);
 
-        BtnKelurahan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/011.png"))); // NOI18N
-        BtnKelurahan1.setMnemonic('2');
-        BtnKelurahan1.setToolTipText("ALt+2");
-        BtnKelurahan1.setName("BtnKelurahan1"); // NOI18N
-        BtnKelurahan1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnKelurahan1ActionPerformed(evt);
-            }
-        });
-        FormInput.add(BtnKelurahan1);
-        BtnKelurahan1.setBounds(460, 310, 28, 23);
 
         TKtp.setName("TKtp"); // NOI18N
         TKtp.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -6330,29 +6319,37 @@ private void ppRegistrasiBtnPrintActionPerformed(java.awt.event.ActionEvent evt)
     }//GEN-LAST:event_MnBarcodeRM6ActionPerformed
 
     private void MnViaBPJSNikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnViaBPJSNikActionPerformed
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        cekViaBPJS.tampil(TKtp.getText());
-        TNm.setText(cekViaBPJS.nama);
-        CmbJk.setSelectedItem(cekViaBPJS.sex);
-        TNoPeserta.setText(cekViaBPJS.noKartu);
-        Pekerjaan.setText(cekViaBPJS.jenisPesertaketerangan);
-        TUmurTh.setText(cekViaBPJS.umurumurSekarang);
-        Valid.SetTgl(DTPLahir,cekViaBPJS.tglLahir);
-        jPopupMenu2.setVisible(false);
-        this.setCursor(Cursor.getDefaultCursor());
+        if(TKtp.getText().trim().equals("")){
+            TKtp.requestFocus();
+            JOptionPane.showMessageDialog(null,"Silahkan isi terlebih dahulu NIK/No.KTP..!!");
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            cekViaBPJS.tampil(TKtp.getText());
+            TNm.setText(cekViaBPJS.nama);
+            CmbJk.setSelectedItem(cekViaBPJS.sex);
+            TNoPeserta.setText(cekViaBPJS.noKartu);
+            Pekerjaan.setText(cekViaBPJS.jenisPesertaketerangan);
+            TUmurTh.setText(cekViaBPJS.umurumurSekarang);
+            Valid.SetTgl(DTPLahir,cekViaBPJS.tglLahir);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_MnViaBPJSNikActionPerformed
 
     private void MnViaBPJSNoKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnViaBPJSNoKartuActionPerformed
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        cekViaBPJSKartu.tampil(TNoPeserta.getText());
-        TNm.setText(cekViaBPJSKartu.nama);
-        CmbJk.setSelectedItem(cekViaBPJSKartu.sex);
-        TKtp.setText(cekViaBPJSKartu.nik);
-        Pekerjaan.setText(cekViaBPJSKartu.jenisPesertaketerangan);
-        TUmurTh.setText(cekViaBPJSKartu.umurumurSekarang);
-        Valid.SetTgl(DTPLahir,cekViaBPJSKartu.tglLahir);
-        jPopupMenu2.setVisible(false);
-        this.setCursor(Cursor.getDefaultCursor());
+        if(TNoPeserta.getText().trim().equals("")){
+            TNoPeserta.requestFocus();
+            JOptionPane.showMessageDialog(null,"Silahkan isi terlebih dahulu No.Peserta..!!");
+		}else{
+			this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            cekViaBPJSKartu.tampil(TNoPeserta.getText());
+            TNm.setText(cekViaBPJSKartu.nama);
+            CmbJk.setSelectedItem(cekViaBPJSKartu.sex);
+            TKtp.setText(cekViaBPJSKartu.nik);
+            Pekerjaan.setText(cekViaBPJSKartu.jenisPesertaketerangan);
+            TUmurTh.setText(cekViaBPJSKartu.umurumurSekarang);
+            Valid.SetTgl(DTPLahir,cekViaBPJSKartu.tglLahir);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_MnViaBPJSNoKartuActionPerformed
 
     private void MnLaporanRM1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLaporanRM1ActionPerformed
@@ -6835,29 +6832,34 @@ private void ppRegistrasiBtnPrintActionPerformed(java.awt.event.ActionEvent evt)
     }//GEN-LAST:event_BtnCari1ActionPerformed
 
     private void MnViaDukcapilNikDKIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnViaDukcapilNikDKIActionPerformed
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        cekViaDukcapilJakarta.tampil(TKtp.getText());
-        Pekerjaan.setText(cekViaDukcapilJakarta.DSC_JENIS_PKRJN);
-        TNm.setText(cekViaDukcapilJakarta.NAMA_LGKP);
-        TTmp.setText(cekViaDukcapilJakarta.TMPT_LHR);
-        Kecamatan.setText(cekViaDukcapilJakarta.NM_KEC);
-        KecamatanPj.setText(cekViaDukcapilJakarta.NM_KEC);
-        Kabupaten.setText(cekViaDukcapilJakarta.NM_KAB);
-        KabupatenPj.setText(cekViaDukcapilJakarta.NM_KAB);
-        Alamat.setText(cekViaDukcapilJakarta.ALAMAT+" RT "+cekViaDukcapilJakarta.NO_RT+" RW "+cekViaDukcapilJakarta.NO_RW);
-        AlamatPj.setText(cekViaDukcapilJakarta.ALAMAT+" RT "+cekViaDukcapilJakarta.NO_RT+" RW "+cekViaDukcapilJakarta.NO_RW);
-        Kelurahan.setText(cekViaDukcapilJakarta.NM_KEL);
-        KelurahanPj.setText(cekViaDukcapilJakarta.NM_KEL);
-        CmbJk.setSelectedItem(cekViaDukcapilJakarta.JENIS_KLMIN);
-        CmbStts.setSelectedItem(cekViaDukcapilJakarta.DSC_STAT_KWN);
-        CMbGd.setSelectedItem(cekViaDukcapilJakarta.DSC_GOL_DRH); 
-        Valid.SetTgl(DTPLahir,cekViaDukcapilJakarta.TGL_LHR);   
-        DTPLahirItemStateChanged(null);    
-        jPopupMenu2.setVisible(false);
-        this.setCursor(Cursor.getDefaultCursor());
-        if((Kelurahan.isEditable()==false)||(Kecamatan.isEditable()==false)||(Kabupaten.isEditable()==false)||(Propinsi.isEditable()==false)){
-            JOptionPane.showMessageDialog(null,"Pengaturan Kelurahan, Kecamatan, Kabupaten dan Propinsi harus diaktifkan terlebih dahulu di Set RM agar data mau disimpan..");
+        if(TKtp.getText().trim().equals("")){
+            TKtp.requestFocus();
+            JOptionPane.showMessageDialog(null,"Silahkan isi terlebih dahulu NIK/No.KTP..!!");
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            cekViaDukcapilJakarta.tampil(TKtp.getText());
+            Pekerjaan.setText(cekViaDukcapilJakarta.DSC_JENIS_PKRJN);
+            TNm.setText(cekViaDukcapilJakarta.NAMA_LGKP);
+            TTmp.setText(cekViaDukcapilJakarta.TMPT_LHR);
+            Kecamatan.setText(cekViaDukcapilJakarta.NM_KEC);
+            KecamatanPj.setText(cekViaDukcapilJakarta.NM_KEC);
+            Kabupaten.setText(cekViaDukcapilJakarta.NM_KAB);
+            KabupatenPj.setText(cekViaDukcapilJakarta.NM_KAB);
+            Alamat.setText(cekViaDukcapilJakarta.ALAMAT+" RT "+cekViaDukcapilJakarta.NO_RT+" RW "+cekViaDukcapilJakarta.NO_RW);
+            AlamatPj.setText(cekViaDukcapilJakarta.ALAMAT+" RT "+cekViaDukcapilJakarta.NO_RT+" RW "+cekViaDukcapilJakarta.NO_RW);
+            Kelurahan.setText(cekViaDukcapilJakarta.NM_KEL);
+            KelurahanPj.setText(cekViaDukcapilJakarta.NM_KEL);
+            CmbJk.setSelectedItem(cekViaDukcapilJakarta.JENIS_KLMIN);
+            CmbStts.setSelectedItem(cekViaDukcapilJakarta.DSC_STAT_KWN);
+            CMbGd.setSelectedItem(cekViaDukcapilJakarta.DSC_GOL_DRH); 
+            Valid.SetTgl(DTPLahir,cekViaDukcapilJakarta.TGL_LHR);   
+            DTPLahirItemStateChanged(null);  
+            this.setCursor(Cursor.getDefaultCursor());
+            if((Kelurahan.isEditable()==false)||(Kecamatan.isEditable()==false)||(Kabupaten.isEditable()==false)||(Propinsi.isEditable()==false)){
+                JOptionPane.showMessageDialog(null,"Pengaturan Kelurahan, Kecamatan, Kabupaten dan Propinsi harus diaktifkan terlebih dahulu di Set RM agar data mau disimpan..");
+            }
         }
+            
     }//GEN-LAST:event_MnViaDukcapilNikDKIActionPerformed
 
     private void MnBarcodeRM8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnBarcodeRM8ActionPerformed
@@ -6919,34 +6921,38 @@ private void ppRegistrasiBtnPrintActionPerformed(java.awt.event.ActionEvent evt)
     }//GEN-LAST:event_MnBarcodeRM9ActionPerformed
 
     private void MnViaDukcapilNikAcehActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnViaDukcapilNikAcehActionPerformed
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        cekViaDukcapilAceh.tampil(TKtp.getText());
-        //System.out.println("Nama : "+cekViaDukcapilAceh.NAMA_LGKP);
-        TNm.setText(cekViaDukcapilAceh.NAMA_LGKP);
-        Kabupaten.setText(cekViaDukcapilAceh.KAB_NAME);
-        KabupatenPj.setText(cekViaDukcapilAceh.KAB_NAME);
-        cmbAgama.setSelectedItem(cekViaDukcapilAceh.AGAMA);
-        Propinsi.setText(cekViaDukcapilAceh.PROP_NAME);
-        PropinsiPj.setText(cekViaDukcapilAceh.PROP_NAME);
-        Kecamatan.setText(cekViaDukcapilAceh.KEC_NAME);
-        KecamatanPj.setText(cekViaDukcapilAceh.KEC_NAME);
-        Pekerjaan.setText(cekViaDukcapilAceh.JENIS_PKRJN);
-        Alamat.setText(cekViaDukcapilAceh.ALAMAT+" RT "+cekViaDukcapilAceh.NO_RT+" RW "+cekViaDukcapilAceh.NO_RW);
-        AlamatPj.setText(cekViaDukcapilAceh.ALAMAT+" RT "+cekViaDukcapilAceh.NO_RT+" RW "+cekViaDukcapilAceh.NO_RW);
-        TTmp.setText(cekViaDukcapilAceh.TMPT_LHR);
-        CMbGd.setSelectedItem(cekViaDukcapilAceh.GOL_DARAH);
-        CMbPnd.setSelectedItem(cekViaDukcapilAceh.PDDK_AKH);
-        CmbStts.setSelectedItem(cekViaDukcapilAceh.STATUS_KAWIN.replaceAll("KAWIN","MENIKAH"));
-        NmIbu.setText(cekViaDukcapilAceh.NAMA_LGKP_IBU);
-        Kelurahan.setText(cekViaDukcapilAceh.KEL_NAME);
-        KelurahanPj.setText(cekViaDukcapilAceh.KEL_NAME);
-        CmbJk.setSelectedItem(cekViaDukcapilAceh.JENIS_KLMIN.toUpperCase());
-        Valid.SetTgl(DTPLahir,cekViaDukcapilAceh.TGL_LHR);   
-        DTPLahirItemStateChanged(null);    
-        jPopupMenu2.setVisible(false);
-        this.setCursor(Cursor.getDefaultCursor());
-        if((Kelurahan.isEditable()==false)||(Kecamatan.isEditable()==false)||(Kabupaten.isEditable()==false)||(Propinsi.isEditable()==false)){
-            JOptionPane.showMessageDialog(null,"Pengaturan Kelurahan, Kecamatan, Kabupaten dan Propinsi harus diaktifkan terlebih dahulu di Set RM agar data mau disimpan..");
+        if(TKtp.getText().trim().equals("")){
+            TKtp.requestFocus();
+            JOptionPane.showMessageDialog(null,"Silahkan isi terlebih dahulu NIK/No.KTP..!!");
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            cekViaDukcapilAceh.tampil(TKtp.getText());
+            //System.out.println("Nama : "+cekViaDukcapilAceh.NAMA_LGKP);
+            TNm.setText(cekViaDukcapilAceh.NAMA_LGKP);
+            Kabupaten.setText(cekViaDukcapilAceh.KAB_NAME);
+            KabupatenPj.setText(cekViaDukcapilAceh.KAB_NAME);
+            cmbAgama.setSelectedItem(cekViaDukcapilAceh.AGAMA);
+            Propinsi.setText(cekViaDukcapilAceh.PROP_NAME);
+            PropinsiPj.setText(cekViaDukcapilAceh.PROP_NAME);
+            Kecamatan.setText(cekViaDukcapilAceh.KEC_NAME);
+            KecamatanPj.setText(cekViaDukcapilAceh.KEC_NAME);
+            Pekerjaan.setText(cekViaDukcapilAceh.JENIS_PKRJN);
+            Alamat.setText(cekViaDukcapilAceh.ALAMAT+" RT "+cekViaDukcapilAceh.NO_RT+" RW "+cekViaDukcapilAceh.NO_RW);
+            AlamatPj.setText(cekViaDukcapilAceh.ALAMAT+" RT "+cekViaDukcapilAceh.NO_RT+" RW "+cekViaDukcapilAceh.NO_RW);
+            TTmp.setText(cekViaDukcapilAceh.TMPT_LHR);
+            CMbGd.setSelectedItem(cekViaDukcapilAceh.GOL_DARAH);
+            CMbPnd.setSelectedItem(cekViaDukcapilAceh.PDDK_AKH);
+            CmbStts.setSelectedItem(cekViaDukcapilAceh.STATUS_KAWIN.replaceAll("KAWIN","MENIKAH"));
+            NmIbu.setText(cekViaDukcapilAceh.NAMA_LGKP_IBU);
+            Kelurahan.setText(cekViaDukcapilAceh.KEL_NAME);
+            KelurahanPj.setText(cekViaDukcapilAceh.KEL_NAME);
+            CmbJk.setSelectedItem(cekViaDukcapilAceh.JENIS_KLMIN.toUpperCase());
+            Valid.SetTgl(DTPLahir,cekViaDukcapilAceh.TGL_LHR);   
+            DTPLahirItemStateChanged(null);    
+            this.setCursor(Cursor.getDefaultCursor());
+            if((Kelurahan.isEditable()==false)||(Kecamatan.isEditable()==false)||(Kabupaten.isEditable()==false)||(Propinsi.isEditable()==false)){
+                JOptionPane.showMessageDialog(null,"Pengaturan Kelurahan, Kecamatan, Kabupaten dan Propinsi harus diaktifkan terlebih dahulu di Set RM agar data mau disimpan..");
+            }
         }
     }//GEN-LAST:event_MnViaDukcapilNikAcehActionPerformed
 
@@ -7519,15 +7525,6 @@ private void ppRegistrasiBtnPrintActionPerformed(java.awt.event.ActionEvent evt)
         DTPDaftar.requestFocus();
     }//GEN-LAST:event_ChkDaftarItemStateChanged
 
-    private void BtnKelurahan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKelurahan1ActionPerformed
-        if(TKtp.getText().trim().equals("")&&TNoPeserta.getText().trim().equals("")){
-            TKtp.requestFocus();
-            JOptionPane.showMessageDialog(null,"Silahkan isi terlebih dahulu No.Peserta/NIK/No.KTP..!!");
-        }else{
-            jPopupMenu2.setLocation(712,222);
-            jPopupMenu2.setVisible(true);
-        }
-    }//GEN-LAST:event_BtnKelurahan1ActionPerformed
 
     private void TKtpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKtpKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
@@ -8202,7 +8199,6 @@ private void ppRegistrasiBtnPrintActionPerformed(java.awt.event.ActionEvent evt)
     private widget.Button BtnKeluar;
     private widget.Button BtnKeluar2;
     private widget.Button BtnKelurahan;
-    private widget.Button BtnKelurahan1;
     private widget.Button BtnKelurahanPj;
     private widget.Button BtnPangkatPolri;
     private widget.Button BtnPangkatTNI;
