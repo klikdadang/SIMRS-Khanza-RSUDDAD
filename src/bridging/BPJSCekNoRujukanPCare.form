@@ -35,7 +35,7 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="27-06-2020"/>
+            <StringItem index="0" value="26-10-2020"/>
           </StringArray>
         </Property>
         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -147,6 +147,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnDocumentActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="BPJSCekNoRujukanPCare_MnDocument"/>
+          </AuxValues>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="ppPengajuan">
           <Properties>
@@ -173,6 +176,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ppPengajuanBtnPrintActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="BPJSCekNoRujukanPCare_ppPengajuan"/>
+          </AuxValues>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="ppPengajuan1">
           <Properties>
@@ -358,7 +364,6 @@
                   <Color PropertyName="color" blue="eb" green="f5" red="f0" type="rgb"/>
                 </LineBorder>
               </Border>
-              <Font PropertyName="font" name="Tahoma" size="11" style="0"/>
               <Color PropertyName="color" blue="32" green="32" red="32" type="rgb"/>
             </TitledBorder>
           </Border>
@@ -653,7 +658,6 @@
                                       <Color PropertyName="color" blue="ec" green="f6" red="f1" type="rgb"/>
                                     </LineBorder>
                                   </Border>
-                                  <Font PropertyName="font" name="Tahoma" size="11" style="0"/>
                                   <Color PropertyName="color" blue="32" green="32" red="32" type="rgb"/>
                                 </TitledBorder>
                               </Border>
@@ -912,7 +916,7 @@
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="1">
-                                    <StringItem index="0" value="27-06-2020"/>
+                                    <StringItem index="0" value="26-10-2020"/>
                                   </StringArray>
                                 </Property>
                                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2135,7 +2139,6 @@
                                       <Color PropertyName="color" blue="ec" green="f6" red="f1" type="rgb"/>
                                     </LineBorder>
                                   </Border>
-                                  <Font PropertyName="font" name="Tahoma" size="11" style="0"/>
                                   <Color PropertyName="color" blue="32" green="32" red="32" type="rgb"/>
                                 </TitledBorder>
                               </Border>
@@ -2196,7 +2199,7 @@
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="1">
-                                    <StringItem index="0" value="27-06-2020 17:38:13"/>
+                                    <StringItem index="0" value="26-10-2020 11:15:33"/>
                                   </StringArray>
                                 </Property>
                                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy HH:mm:ss"/>
@@ -2233,7 +2236,7 @@
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="1">
-                                    <StringItem index="0" value="27-06-2020"/>
+                                    <StringItem index="0" value="26-10-2020"/>
                                   </StringArray>
                                 </Property>
                                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2975,7 +2978,7 @@
                                 </Property>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="1">
-                                    <StringItem index="0" value="27-06-2020"/>
+                                    <StringItem index="0" value="26-10-2020"/>
                                   </StringArray>
                                 </Property>
                                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
