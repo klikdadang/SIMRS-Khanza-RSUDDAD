@@ -9401,6 +9401,17 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                     }
                     break;
             }
+        }if(BASENOREG.equals("urutan")){
+            switch (URUTNOREG) {
+                default:
+                    if(Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from booking_registrasi where kd_poli not like 'IGDK' and tanggal_periksa='"+Valid.SetTgl(DTPReg.getSelectedItem()+"")+"'")>=
+                            Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli not like 'IGDK' and tgl_registrasi='"+Valid.SetTgl(DTPReg.getSelectedItem()+"")+"'")){
+                        Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from booking_registrasi where kd_poli not like 'IGDK' and tanggal_periksa='"+Valid.SetTgl(DTPReg.getSelectedItem()+"")+"'","",3,TNoReg);
+                    }else{
+                        Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli not like 'IGDK' and tgl_registrasi='"+Valid.SetTgl(DTPReg.getSelectedItem()+"")+"'","",3,TNoReg);
+                    }
+                    break;
+            }
         }else{
             switch (URUTNOREG) {
                 case "poli":
