@@ -5536,6 +5536,9 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
                         TNo.setText(rs.getString("no_rkm_medis"));
                         TNm.setText(rs.getString("nm_pasien"));
                         CMbGd.setSelectedItem(rs.getString("gol_darah"));
+                        CMbPnd.setSelectedItem(rs.getString("pnd"));
+                        DTPDaftar.setSelectedItem(rs.getDate("tgl_daftar"));
+                        TKtp.setText(rs.getString("no_ktp"));
                         TTmp.setText(rs.getString("tmp_lahir"));
                         cmbAgama.setSelectedItem(rs.getString("agama"));
                         CmbStts.setSelectedItem(rs.getString("stts_nikah"));
@@ -5564,7 +5567,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
                         nmcacat.setText(rs.getString("nama_cacat"));
                         kdperusahaan.setText(rs.getString("kode_perusahaan"));
                         nmperusahaan.setText(rs.getString("nama_perusahaan"));                        
-                        switch (rs.getString("namakeluarga")) {
+                        switch (rs.getString("keluarga")) {
                             case "AYAH":
                                 R1.setSelected(true);
                                 break;

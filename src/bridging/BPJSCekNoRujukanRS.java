@@ -5376,6 +5376,9 @@ public final class BPJSCekNoRujukanRS extends javax.swing.JDialog {
                         TNo.setText(rs.getString("no_rkm_medis"));
                         TNm.setText(rs.getString("nm_pasien"));
                         CMbGd.setSelectedItem(rs.getString("gol_darah"));
+                        CMbPnd.setSelectedItem(rs.getString("pnd"));
+                        DTPDaftar.setSelectedItem(rs.getDate("tgl_daftar"));
+                        TKtp.setText(rs.getString("no_ktp"));
                         TTmp.setText(rs.getString("tmp_lahir"));
                         cmbAgama.setSelectedItem(rs.getString("agama"));
                         CmbStts.setSelectedItem(rs.getString("stts_nikah"));
