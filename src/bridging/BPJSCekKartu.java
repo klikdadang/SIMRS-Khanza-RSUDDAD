@@ -11,6 +11,7 @@
 
 package bridging;
 
+import surat.SuratKontrol;
 import fungsi.WarnaTable;
 import java.awt.Dimension;
 import javax.swing.JTable;
@@ -63,7 +64,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
     private DlgKamar kamar=new DlgKamar(null,false);
     private BPJSCekNoKartu cekViaBPJSKartu=new BPJSCekNoKartu();
     private BPJSCekReferensiDokterDPJP dpjp=new BPJSCekReferensiDokterDPJP(null,false);
-    private DlgSKDPBPJS skdp=new DlgSKDPBPJS(null,false);
+    private SuratKontrol skdp=new SuratKontrol(null,false);
     private BPJSCekReferensiPropinsi propinsikll=new BPJSCekReferensiPropinsi(null,false);
     private BPJSCekReferensiKabupaten kabupatenkll=new BPJSCekReferensiKabupaten(null,false);
     private BPJSCekReferensiKecamatan kecamatankll=new BPJSCekReferensiKecamatan(null,false);
@@ -5536,9 +5537,6 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
                         TNo.setText(rs.getString("no_rkm_medis"));
                         TNm.setText(rs.getString("nm_pasien"));
                         CMbGd.setSelectedItem(rs.getString("gol_darah"));
-                        CMbPnd.setSelectedItem(rs.getString("pnd"));
-                        DTPDaftar.setSelectedItem(rs.getDate("tgl_daftar"));
-                        TKtp.setText(rs.getString("no_ktp"));
                         TTmp.setText(rs.getString("tmp_lahir"));
                         cmbAgama.setSelectedItem(rs.getString("agama"));
                         CmbStts.setSelectedItem(rs.getString("stts_nikah"));
@@ -5567,7 +5565,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
                         nmcacat.setText(rs.getString("nama_cacat"));
                         kdperusahaan.setText(rs.getString("kode_perusahaan"));
                         nmperusahaan.setText(rs.getString("nama_perusahaan"));                        
-                        switch (rs.getString("keluarga")) {
+                        switch (rs.getString("namakeluarga")) {
                             case "AYAH":
                                 R1.setSelected(true);
                                 break;

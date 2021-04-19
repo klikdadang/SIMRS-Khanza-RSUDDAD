@@ -6,7 +6,6 @@
 package widget;
 
 import java.awt.Color;
-import java.sql.Date;
 import uz.ncipro.calendar.JDateTimePicker;
 
 /**
@@ -23,10 +22,6 @@ public final class Tanggal extends JDateTimePicker {
         setFont(new java.awt.Font("Tahoma", 0, 11));
         //setBorder(javax.swing.BorderFactory.createLineBorder(new Color(212,212,152)));
         setSize(WIDTH,23);
-    }
-
-    public void setText(Date date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

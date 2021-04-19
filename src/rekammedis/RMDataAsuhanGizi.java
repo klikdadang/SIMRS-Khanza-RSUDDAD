@@ -47,9 +47,9 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
     private validasi Valid=new validasi();
     private PreparedStatement ps;
     private ResultSet rs;
-    private int i=0;    
+    private int i=0,umur=0;    
     private DlgCariPetugas petugas=new DlgCariPetugas(null,false);
-    private String alergi_telur, alergi_susu_sapi, alergi_kacang, alergi_gluten, alergi_udang, alergi_ikan, alergi_hazelnut;
+    private String alergi_telur, alergi_susu_sapi, alergi_kacang, alergi_gluten, alergi_udang, alergi_ikan, alergi_hazelnut,sttsumur="";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -160,9 +160,9 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
         FisikKlinis.setDocument(new batasInput((int)100).getKata(FisikKlinis));
         RiwayatPersonal.setDocument(new batasInput((int)100).getKata(RiwayatPersonal));
         PolaMakan.setDocument(new batasInput((int)100).getKata(PolaMakan));
-        DiagnosisGizi.setDocument(new batasInput((int)100).getKata(DiagnosisGizi));
-        IntervensiGizi.setDocument(new batasInput((int)100).getKata(IntervensiGizi));
-        Monitoring.setDocument(new batasInput((int)100).getKata(Monitoring));
+        DiagnosisGizi.setDocument(new batasInput((int)1000).getKata(DiagnosisGizi));
+        IntervensiGizi.setDocument(new batasInput((int)1000).getKata(IntervensiGizi));
+        Monitoring.setDocument(new batasInput((int)1000).getKata(Monitoring));
         
         TCari.setDocument(new batasInput((int)100).getKata(TCari));
         
@@ -209,6 +209,36 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
             public void windowActivated(WindowEvent e) {}
             @Override
             public void windowDeactivated(WindowEvent e) {}
+        });
+        
+        BB.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                isBMI();
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                isBMI();
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                isBMI();
+            }
+        });
+        
+        TB.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                isBMI();
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                isBMI();
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                isBMI();
+            }
         });
         
         ChkInput.setSelected(false);
@@ -536,7 +566,7 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-01-2020" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-03-2021" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -550,7 +580,7 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-01-2020" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-03-2021" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1529,11 +1559,17 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
                         "asuhan_gizi.antropometri_tbperu,asuhan_gizi.antropometri_bbpertb,asuhan_gizi.antropometri_llaperu,asuhan_gizi.biokimia,"+
                         "asuhan_gizi.fisik_klinis,asuhan_gizi.alergi_telur,asuhan_gizi.alergi_susu_sapi,asuhan_gizi.alergi_kacang,asuhan_gizi.alergi_gluten,"+
                         "asuhan_gizi.alergi_udang,asuhan_gizi.alergi_ikan,asuhan_gizi.alergi_hazelnut,asuhan_gizi.pola_makan,asuhan_gizi.riwayat_personal,"+
-                        "asuhan_gizi.diagnosis,asuhan_gizi.intervensi_gizi,asuhan_gizi.monitoring_evaluasi,asuhan_gizi.nip,petugas.nama "+
+                        "asuhan_gizi.diagnosis,asuhan_gizi.intervensi_gizi,asuhan_gizi.monitoring_evaluasi,asuhan_gizi.nip,petugas.nama,bangsal.nm_bangsal "+
                         "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
+//<Tambahan Goris dgn ,bangsal.nm_bangsal "                                
+                        "inner join kamar_inap on reg_periksa.no_rawat=kamar_inap.no_rawat "+
+                        "INNER JOIN kamar ON kamar_inap.kd_kamar=kamar.kd_kamar "+
+                        "inner join bangsal on kamar.kd_bangsal=bangsal.kd_bangsal "+
+//Tambahan Goris>  
                         "inner join asuhan_gizi on reg_periksa.no_rawat=asuhan_gizi.no_rawat "+
                         "inner join petugas on asuhan_gizi.nip=petugas.nip where "+
                         "asuhan_gizi.tanggal between '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+"' order by asuhan_gizi.tanggal",param);
+               
                 }else{
                     Valid.MyReportqry("rptDataAsuhanGiziPasien.jasper","report","::[ Data Asuhan Gizi Pasien ]::",
                         "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.jk,pasien.tgl_lahir,asuhan_gizi.tanggal,"+
@@ -1542,8 +1578,13 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
                         "asuhan_gizi.antropometri_tbperu,asuhan_gizi.antropometri_bbpertb,asuhan_gizi.antropometri_llaperu,asuhan_gizi.biokimia,"+
                         "asuhan_gizi.fisik_klinis,asuhan_gizi.alergi_telur,asuhan_gizi.alergi_susu_sapi,asuhan_gizi.alergi_kacang,asuhan_gizi.alergi_gluten,"+
                         "asuhan_gizi.alergi_udang,asuhan_gizi.alergi_ikan,asuhan_gizi.alergi_hazelnut,asuhan_gizi.pola_makan,asuhan_gizi.riwayat_personal,"+
-                        "asuhan_gizi.diagnosis,asuhan_gizi.intervensi_gizi,asuhan_gizi.monitoring_evaluasi,asuhan_gizi.nip,petugas.nama "+
+                        "asuhan_gizi.diagnosis,asuhan_gizi.intervensi_gizi,asuhan_gizi.monitoring_evaluasi,asuhan_gizi.nip,petugas.nama,bangsal.nm_bangsal  "+
                         "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
+//<Tambahan Goris dgn ,bangsal.nm_bangsal "                                
+                        "inner join kamar_inap on reg_periksa.no_rawat=kamar_inap.no_rawat "+
+                        "INNER JOIN kamar ON kamar_inap.kd_kamar=kamar.kd_kamar "+
+                        "inner join bangsal on kamar.kd_bangsal=bangsal.kd_bangsal "+
+//Tambahan Goris>  
                         "inner join asuhan_gizi on reg_periksa.no_rawat=asuhan_gizi.no_rawat "+
                         "inner join petugas on asuhan_gizi.nip=petugas.nip where "+
                         "asuhan_gizi.tanggal between '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+"' and reg_periksa.no_rawat like '%"+TCari.getText().trim()+"%' or "+
@@ -1666,9 +1707,14 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
                         "asuhan_gizi.antropometri_tbperu,asuhan_gizi.antropometri_bbpertb,asuhan_gizi.antropometri_llaperu,asuhan_gizi.biokimia,"+
                         "asuhan_gizi.fisik_klinis,asuhan_gizi.alergi_telur,asuhan_gizi.alergi_susu_sapi,asuhan_gizi.alergi_kacang,asuhan_gizi.alergi_gluten,"+
                         "asuhan_gizi.alergi_udang,asuhan_gizi.alergi_ikan,asuhan_gizi.alergi_hazelnut,asuhan_gizi.pola_makan,asuhan_gizi.riwayat_personal,"+
-                        "asuhan_gizi.diagnosis,asuhan_gizi.intervensi_gizi,asuhan_gizi.monitoring_evaluasi,asuhan_gizi.nip,petugas.nama,reg_periksa.umurdaftar,reg_periksa.sttsumur, penjab.png_jawab "+
+                        "asuhan_gizi.diagnosis,asuhan_gizi.intervensi_gizi,asuhan_gizi.monitoring_evaluasi,asuhan_gizi.nip,petugas.nama,reg_periksa.umurdaftar,reg_periksa.sttsumur, penjab.png_jawab,bangsal.nm_bangsal "+
                         "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                         "inner join asuhan_gizi on reg_periksa.no_rawat=asuhan_gizi.no_rawat "+
+//<Tambahan Goris dgn ,bangsal.nm_bangsal "                                
+                        "inner join kamar_inap on reg_periksa.no_rawat=kamar_inap.no_rawat "+
+                        "INNER JOIN kamar ON kamar_inap.kd_kamar=kamar.kd_kamar "+
+                        "inner join bangsal on kamar.kd_bangsal=bangsal.kd_bangsal "+
+//Tambahan Goris>  
                         "inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
                         "inner join petugas on asuhan_gizi.nip=petugas.nip where asuhan_gizi.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
         }
@@ -1906,9 +1952,14 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
                         "asuhan_gizi.antropometri_tbperu,asuhan_gizi.antropometri_bbpertb,asuhan_gizi.antropometri_llaperu,asuhan_gizi.biokimia,"+
                         "asuhan_gizi.fisik_klinis,asuhan_gizi.alergi_telur,asuhan_gizi.alergi_susu_sapi,asuhan_gizi.alergi_kacang,asuhan_gizi.alergi_gluten,"+
                         "asuhan_gizi.alergi_udang,asuhan_gizi.alergi_ikan,asuhan_gizi.alergi_hazelnut,asuhan_gizi.pola_makan,asuhan_gizi.riwayat_personal,"+
-                        "asuhan_gizi.diagnosis,asuhan_gizi.intervensi_gizi,asuhan_gizi.monitoring_evaluasi,asuhan_gizi.nip,petugas.nama "+
+                        "asuhan_gizi.diagnosis,asuhan_gizi.intervensi_gizi,asuhan_gizi.monitoring_evaluasi,asuhan_gizi.nip,petugas.nama,bangsal.nm_bangsal "+
                         "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                         "inner join asuhan_gizi on reg_periksa.no_rawat=asuhan_gizi.no_rawat "+
+//<Tambahan Goris dgn ,bangsal.nm_bangsal "                                
+                        "inner join kamar_inap on reg_periksa.no_rawat=kamar_inap.no_rawat "+
+                        "INNER JOIN kamar ON kamar_inap.kd_kamar=kamar.kd_kamar "+
+                        "inner join bangsal on kamar.kd_bangsal=bangsal.kd_bangsal "+
+//Tambahan Goris>                               
                         "inner join petugas on asuhan_gizi.nip=petugas.nip where "+
                         "asuhan_gizi.tanggal between ? and ? order by asuhan_gizi.tanggal");
             }else{
@@ -1919,9 +1970,14 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
                         "asuhan_gizi.antropometri_tbperu,asuhan_gizi.antropometri_bbpertb,asuhan_gizi.antropometri_llaperu,asuhan_gizi.biokimia,"+
                         "asuhan_gizi.fisik_klinis,asuhan_gizi.alergi_telur,asuhan_gizi.alergi_susu_sapi,asuhan_gizi.alergi_kacang,asuhan_gizi.alergi_gluten,"+
                         "asuhan_gizi.alergi_udang,asuhan_gizi.alergi_ikan,asuhan_gizi.alergi_hazelnut,asuhan_gizi.pola_makan,asuhan_gizi.riwayat_personal,"+
-                        "asuhan_gizi.diagnosis,asuhan_gizi.intervensi_gizi,asuhan_gizi.monitoring_evaluasi,asuhan_gizi.nip,petugas.nama "+
+                        "asuhan_gizi.diagnosis,asuhan_gizi.intervensi_gizi,asuhan_gizi.monitoring_evaluasi,asuhan_gizi.nip,petugas.nama,bangsal.nm_bangsal "+
                         "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                         "inner join asuhan_gizi on reg_periksa.no_rawat=asuhan_gizi.no_rawat "+
+//<Tambahan Goris dgn ,bangsal.nm_bangsal "                                 
+                        "inner join kamar_inap on reg_periksa.no_rawat=kamar_inap.no_rawat "+
+                        "INNER JOIN kamar ON kamar_inap.kd_kamar=kamar.kd_kamar "+
+                        "inner join bangsal on kamar.kd_bangsal=bangsal.kd_bangsal "+
+//Tambahan Goris>
                         "inner join petugas on asuhan_gizi.nip=petugas.nip where "+
                         "asuhan_gizi.tanggal between ? and ? and reg_periksa.no_rawat like ? or "+
                         "asuhan_gizi.tanggal between ? and ? and pasien.no_rkm_medis like ? or "+
@@ -2133,6 +2189,16 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null,"User login bukan petugas...!!");
             }
         }            
+    }
+    
+    private void isBMI(){
+        if((!TB.getText().equals(""))&&(!BB.getText().equals(""))){
+            IMT.setText(Valid.SetAngka7(Valid.SetAngka(BB.getText())/((Valid.SetAngka(TB.getText())/100)*(Valid.SetAngka(TB.getText())/100)))+"");
+            if(sttsumur.equals("Bl")){
+                BBPerU.setText(Valid.SetAngka7(Valid.SetAngka(BB.getText())/umur)+"");
+                TBPerU.setText(Valid.SetAngka7(Valid.SetAngka(TB.getText())/umur)+"");
+            }
+        }
     }
 
     
