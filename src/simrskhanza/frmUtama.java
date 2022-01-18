@@ -669,6 +669,7 @@ import surat.SuratRuang;
 import surat.SuratSakit;
 import surat.SuratSifat;
 import surat.SuratStatus;
+import surat.SuratSehat;
 import surat.SuratTidakHamil;
 import toko.TokoBarang;
 import toko.TokoBayarPiutang;
@@ -16032,6 +16033,18 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }
     
+    private void btnSuratSehatActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SuratSehat aplikasi=new SuratSehat(this,false);
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
     private void btnSuratHamilActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
         DlgHome.dispose();
@@ -17659,7 +17672,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnBayarPesanToko,btnMemberToko,btnPenjualanToko,btnRegistrasiPoliPerTanggal,btnPiutangToko,btnReturKeSuplierToko,btnReturBarangNonMedis,
             btnRiwayatBarangNonMedis,btnPasienCorona,btnPendapatanHarianToko,btnDiagnosaPasienCorona,btnPerawatanPasienCorona,btnPenilaianAwalKeperawatanGigi,
             btnMasterMasalahKeperawatanGigi,btnBayarPiutangToko,btnPiutangHarianToko,btnPenjualanHarianToko,btnDeteksiDiniCorona,btnPenilaianAwalKeperawatanKebidanan,
-            btnPengumumanEPasien,btnSuratHamil,btnSetTarifOnline,btnBookingPeriksa,btnSirkulasiBarangToko,btnReturJualToko,btnReturPiutangToko,
+            btnPengumumanEPasien,btnSuratSehat,btnSuratHamil,btnSetTarifOnline,btnBookingPeriksa,btnSirkulasiBarangToko,btnReturJualToko,btnReturPiutangToko,
             btnSirkulasiBarangToko2,btnKeuntunganBarangToko,btnZISPengeluaranPenerimaDankes,btnZISPenghasilanPenerimaDankes,btnZISUkuranRumahPenerimaDankes,
             btnZISDindingRumahPenerimaDankes,btnZISLantaiRumahPenerimaDankes,btnZISAtapRumahPenerimaDankes,btnZISKepemilikanRumahPenerimaDankes,
             btnZISKamarMandiPenerimaDankes,btnZISDapurRumahPenerimaDankes,btnZISKursiRumahPenerimaDankes,btnZISKategoriPHBSPenerimaDankes,
@@ -20872,6 +20885,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             
             if(akses.getsurat_sakit()==true){
                 Panelmenu.add(btnSuratSakit);
+                jmlmenu++;
+            }
+            
+            if(akses.getsurat_sehat()==true){
+                Panelmenu.add(btnSuratSehat);
                 jmlmenu++;
             }
             
@@ -24406,6 +24424,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         
         if(akses.getsurat_sakit()==true){
             Panelmenu.add(btnSuratSakit);
+            jmlmenu++;
+        }
+        
+        if(akses.getsurat_sehat()==true){
+            Panelmenu.add(btnSuratSehat);
             jmlmenu++;
         }
         
@@ -29166,6 +29189,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             }                
         }
         
+        if(akses.getsurat_sehat()==true){
+            if(btnSuratSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnSuratSehat);
+                jmlmenu++;
+            }                
+        }
+        
         if(akses.getsurat_hamil()==true){
             if(btnSuratHamil.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnSuratHamil);
@@ -31095,6 +31125,14 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnPengumumanEPasien.setName("btnPengumumanEPasien"); 
         btnPengumumanEPasien.setPreferredSize(new java.awt.Dimension(200, 90));
         btnPengumumanEPasien.addActionListener(this::btnPengumumanEPasienActionPerformed);
+        
+        btnSuratSehat = new widget.ButtonBig();
+        btnSuratSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/sehat.png"))); 
+        btnSuratSehat.setText("Surat Sehat");
+        btnSuratSehat.setIconTextGap(0);
+        btnSuratSehat.setName("btnSuratSehat"); 
+        btnSuratSehat.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSuratSehat.addActionListener(this::btnSuratSehatActionPerformed);
         
         btnSuratHamil = new widget.ButtonBig();
         btnSuratHamil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_4_375262.png"))); 

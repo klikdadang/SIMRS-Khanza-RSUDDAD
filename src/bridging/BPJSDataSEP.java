@@ -4510,6 +4510,11 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                          TNoRw.getText(),NmPpkRujukan.getText(),"-",NoRujukan.getText(),"0",NmPpkRujukan.getText(),KdPenyakit.getText(),"-",
                          "-",NoBalasan.getText()
                      });
+                     Sequel.queryu2("update reg_periksa set jns_peserta=? where no_rawat=?",2,
+                             new String[]{
+                                 cekViaBPJSKartu.jenisPesertaketerangan+" ("+cekViaBPJSKartu.statusPesertaketerangan+")",TNoRw.getText()
+                             }
+                     );
                      if(JenisPelayanan.getSelectedIndex()==1){
                         /*try {
                             headers = new HttpHeaders();

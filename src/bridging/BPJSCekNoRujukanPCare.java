@@ -5261,7 +5261,8 @@ public final class BPJSCekNoRujukanPCare extends javax.swing.JDialog {
                 tabMode.addRow(new Object[]{
                     "       Jenis Peserta",": "+response.path("peserta").path("jenisPeserta").path("kode").asText()+". "+response.path("peserta").path("jenisPeserta").path("keterangan").asText()
                 });
-                peserta=response.path("peserta").path("jenisPeserta").path("keterangan").asText();
+                peserta=response.path("peserta").path("jenisPeserta").path("keterangan").asText()+" ("+
+                        response.path("peserta").path("statusPeserta").path("keterangan").asText()+")";
                 Pekerjaan.setText(response.path("peserta").path("jenisPeserta").path("keterangan").asText());
                 tabMode.addRow(new Object[]{
                     "       Medical Record",": "
@@ -6088,10 +6089,10 @@ public final class BPJSCekNoRujukanPCare extends javax.swing.JDialog {
         if(JenisPelayanan.getSelectedIndex()==1){
             isPoli();
             isNumber();
-            if(Sequel.menyimpantf2("reg_periksa","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",19,
+            if(Sequel.menyimpantf2("reg_periksa","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",20,
                     new String[]{TNoReg.getText(),TNoRw.getText(),Valid.SetTgl(TanggalSEP.getSelectedItem()+""),TanggalSEP.getSelectedItem().toString().substring(11,19),
                     kddokter.getText(),TNo.getText(),kdpoli.getText(),Saudara.getText(),AlamatPj.getText()+", "+KelurahanPj.getText()+", "+KecamatanPj.getText()+", "+KabupatenPj.getText(),
-                    klg,TBiaya.getText(),"Belum",statuspasien,"Ralan",Kdpnj.getText(),umur,sttsumur,"Belum Bayar",status
+                    klg,TBiaya.getText(),"Belum",statuspasien,"Ralan",Kdpnj.getText(),umur,sttsumur,"Belum Bayar",status,peserta
                 })==true){
                     UpdateUmur();
                     Sequel.menyimpan2("rujuk_masuk","'"+TNoRw.getText()+"','"+NmPpkRujukan.getText()+"','"+Kabupaten.getText()+"','"+NoRujukan.getText()+"','0','"+NmPPK.getText()+"','"+KdPenyakit.getText()+"','-','-','"+NoBalasan.getText()+"'","No.Rujuk");             
@@ -6111,10 +6112,10 @@ public final class BPJSCekNoRujukanPCare extends javax.swing.JDialog {
         }else if(JenisPelayanan.getSelectedIndex()==0){
             isNumber();
             Sequel.menyimpan("poliklinik","?,?,?,?,?",5,new String[]{"IGDK","Unit IGD","0","0","1"});
-            if(Sequel.menyimpantf2("reg_periksa","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",19,
+            if(Sequel.menyimpantf2("reg_periksa","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",20,
                     new String[]{TNoReg.getText(),TNoRw.getText(),Valid.SetTgl(TanggalSEP.getSelectedItem()+""),TanggalSEP.getSelectedItem().toString().substring(11,19),
                     kddokter.getText(),TNo.getText(),"IGDK",Saudara.getText(),AlamatPj.getText()+", "+KelurahanPj.getText()+", "+KecamatanPj.getText()+", "+KabupatenPj.getText(),
-                    klg,Sequel.cariIsi("select registrasilama from poliklinik where kd_poli='IGDK'"),"Belum",statuspasien,"Ralan",Kdpnj.getText(),umur,sttsumur,"Belum Bayar",status
+                    klg,Sequel.cariIsi("select registrasilama from poliklinik where kd_poli='IGDK'"),"Belum",statuspasien,"Ralan",Kdpnj.getText(),umur,sttsumur,"Belum Bayar",status,peserta
                 })==true){
                     UpdateUmur();
                     Sequel.menyimpan2("rujuk_masuk","'"+TNoRw.getText()+"','"+NmPpkRujukan.getText()+"','"+Kabupaten.getText()+"','"+NoRujukan.getText()+"','0','"+NmPPK.getText()+"','"+KdPenyakit.getText()+"','-','-','"+NoBalasan.getText()+"'","No.Rujuk");                                     
