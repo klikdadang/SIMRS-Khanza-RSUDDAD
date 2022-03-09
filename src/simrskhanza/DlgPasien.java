@@ -1601,6 +1601,7 @@ public class DlgPasien extends javax.swing.JDialog {
         EMail = new widget.TextBox();
         jLabel40 = new widget.Label();
         NIP = new widget.TextBox();
+        ChkAlamatPJ = new widget.CekBox();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbPasien = new widget.Table();
@@ -3164,7 +3165,7 @@ public class DlgPasien extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(4, 102, 95, 23);
 
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-04-2021" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-02-2022" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -3296,7 +3297,7 @@ public class DlgPasien extends javax.swing.JDialog {
         FormInput.add(TKtp);
         TKtp.setBounds(743, 132, 130, 23);
 
-        DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-04-2021" }));
+        DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-02-2022" }));
         DTPDaftar.setDisplayFormat("dd-MM-yyyy");
         DTPDaftar.setName("DTPDaftar"); // NOI18N
         DTPDaftar.setOpaque(false);
@@ -3505,6 +3506,11 @@ public class DlgPasien extends javax.swing.JDialog {
         CmbKlg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AYAH", "IBU", "ISTRI", "SUAMI", "SAUDARA", "ANAK", "PAMAN/BIBI", "KAKEK/NENEK", "CUCU", "SEPUPU", "TETANGGA", "TEMAN", "DIRI SENDIRI" }));
         CmbKlg.setLightWeightPopupEnabled(false);
         CmbKlg.setName("CmbKlg"); // NOI18N
+        CmbKlg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbKlgActionPerformed(evt);
+            }
+        });
         CmbKlg.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 CmbKlgKeyPressed(evt);
@@ -3561,7 +3567,7 @@ public class DlgPasien extends javax.swing.JDialog {
             }
         });
         FormInput.add(AlamatPj);
-        AlamatPj.setBounds(496, 252, 377, 23);
+        AlamatPj.setBounds(496, 252, 346, 23);
 
         KecamatanPj.setText("KECAMATAN");
         KecamatanPj.setHighlighter(null);
@@ -4145,6 +4151,19 @@ public class DlgPasien extends javax.swing.JDialog {
         });
         FormInput.add(NIP);
         NIP.setBounds(753, 342, 120, 23);
+
+        ChkAlamatPJ.setBorder(null);
+        ChkAlamatPJ.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        ChkAlamatPJ.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ChkAlamatPJ.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ChkAlamatPJ.setName("ChkAlamatPJ"); // NOI18N
+        ChkAlamatPJ.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ChkAlamatPJItemStateChanged(evt);
+            }
+        });
+        FormInput.add(ChkAlamatPJ);
+        ChkAlamatPJ.setBounds(845, 252, 28, 23);
 
         Scroll1.setViewportView(FormInput);
 
@@ -8167,6 +8186,26 @@ private void ppRegistrasiBtnPrintActionPerformed(java.awt.event.ActionEvent evt)
         // TODO add your handling code here:
     }//GEN-LAST:event_CmbKlgKeyPressed
 
+    private void ChkAlamatPJItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ChkAlamatPJItemStateChanged
+        if(ChkAlamatPJ.isSelected()==true){
+            AlamatPj.setText(Alamat.getText());
+            KelurahanPj.setText(Kelurahan.getText());
+            KecamatanPj.setText(Kecamatan.getText());
+            KabupatenPj.setText(Kabupaten.getText());
+            PropinsiPj.setText(Propinsi.getText());
+        }else{
+            AlamatPj.setText("ALAMAT");
+            KelurahanPj.setText("KELURAHAN");
+            KecamatanPj.setText("KECAMATAN");
+            KabupatenPj.setText("KABUPATEN");
+            PropinsiPj.setText("PROPINSI");
+        }
+    }//GEN-LAST:event_ChkAlamatPJItemStateChanged
+
+    private void CmbKlgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbKlgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CmbKlgActionPerformed
+
     /**
      * @data args the command line arguments
      */
@@ -8255,6 +8294,7 @@ private void ppRegistrasiBtnPrintActionPerformed(java.awt.event.ActionEvent evt)
     private widget.ComboBox CMbPnd;
     private widget.TextBox Carialamat;
     private widget.CekBox ChkAccor;
+    private widget.CekBox ChkAlamatPJ;
     private widget.CekBox ChkDaftar;
     private widget.CekBox ChkRM;
     private widget.ComboBox CmbJk;
@@ -9283,6 +9323,7 @@ private void ppRegistrasiBtnPrintActionPerformed(java.awt.event.ActionEvent evt)
         TUmurTh.setText("");
         Saudara.setText("");     
         NmIbu.setText("");
+        ChkAlamatPJ.setSelected(false);
         Kelurahan.setText("KELURAHAN");      
         Kecamatan.setText("KECAMATAN");      
         Kabupaten.setText("KABUPATEN"); 

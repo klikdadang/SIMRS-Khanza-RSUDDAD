@@ -739,6 +739,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R2.setBackground(new java.awt.Color(240, 250, 230));
         R2.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(R2);
+        R2.setSelected(true);
         R2.setText("Tanggal Booking :");
         R2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         R2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -784,7 +785,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R3.setBackground(new java.awt.Color(240, 250, 230));
         R3.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(R3);
-        R3.setSelected(true);
         R3.setText("Tanggal Periksa :");
         R3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         R3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -900,7 +900,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
 
         TanggalBooking.setForeground(new java.awt.Color(50, 70, 50));
         TanggalBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2020 06:34:35" }));
-        TanggalBooking.setDisplayFormat("dd-MM-yyyy hh:mm:ss");
+        TanggalBooking.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TanggalBooking.setName("TanggalBooking"); // NOI18N
         TanggalBooking.setOpaque(false);
         TanggalBooking.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -980,7 +980,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
 
         TanggalPeriksa.setForeground(new java.awt.Color(50, 70, 50));
         TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2020 06:34:35" }));
-        TanggalPeriksa.setDisplayFormat("dd-MM-yyyy hh:mm:ss");
+        TanggalPeriksa.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TanggalPeriksa.setName("TanggalPeriksa"); // NOI18N
         TanggalPeriksa.setOpaque(false);
         TanggalPeriksa.addItemListener(new java.awt.event.ItemListener() {

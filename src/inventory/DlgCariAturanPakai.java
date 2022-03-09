@@ -330,7 +330,14 @@ public final class DlgCariAturanPakai extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        tampil();
+        try {
+            if(Valid.daysOld("./cache/aturanpakai.iyem")<4){
+                tampil2();
+            }else{
+                tampil();
+            }
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -417,12 +424,9 @@ public final class DlgCariAturanPakai extends javax.swing.JDialog {
             }
             myObj.close();
         } catch (Exception ex) {
-            if(ex.toString().contains("begin")){
-                System.out.println("Notifikasi : Data tidak ditemukan..!!");
-            }else{
-                System.out.println("Notifikasi : "+ex);
-            }
+            System.out.println("Notifikasi : "+ex);
         }
+        LCount.setText(""+tabMode.getRowCount());
     }
 
     public void emptTeks() {
