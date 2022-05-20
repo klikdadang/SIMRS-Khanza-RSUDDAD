@@ -63,7 +63,7 @@ public final class KeuanganBayarPemesananAset extends javax.swing.JDialog {
     private ResultSet rs;
     private File file;
     private FileWriter fileWriter;
-    private String iyem;
+    private String iyem,Kontra_Penerimaan_AsetInventaris=Sequel.cariIsi("select Kontra_Penerimaan_AsetInventaris from set_akun");
     private ObjectMapper mapper = new ObjectMapper();
     private JsonNode root;
     private JsonNode response;
@@ -771,7 +771,7 @@ public final class KeuanganBayarPemesananAset extends javax.swing.JDialog {
                     
                     Sequel.queryu("delete from tampjurnal");
                     Sequel.menyimpan("tampjurnal","?,?,?,?","Rekening",4,new String[]{
-                        Sequel.cariIsi("select kd_rek_aset from inventaris_pemesanan where no_faktur=?",no_faktur.getText()),"HUTANG USAHA",besar_bayar.getText(),"0"
+                        Kontra_Penerimaan_AsetInventaris,"HUTANG USAHA",besar_bayar.getText(),"0"
                     });                     
                     Sequel.menyimpan("tampjurnal","?,?,?,?","Rekening",4,new String[]{
                         koderekening,AkunBayar.getSelectedItem().toString(),"0",besar_bayar.getText()
@@ -866,7 +866,7 @@ public final class KeuanganBayarPemesananAset extends javax.swing.JDialog {
                     koderekening,AkunBayar.getSelectedItem().toString(),besar_bayar.getText(),"0"
                 });    
                 Sequel.menyimpan("tampjurnal","?,?,?,?","Rekening",4,new String[]{
-                    Sequel.cariIsi("select kd_rek_aset from inventaris_pemesanan where no_faktur=?",no_faktur.getText()),"HUTANG USAHA","0",besar_bayar.getText()
+                    Kontra_Penerimaan_AsetInventaris,"HUTANG USAHA","0",besar_bayar.getText()
                 }); 
                 sukses=jur.simpanJurnal(no_bukti.getText(),"U","BATAL BAYAR PELUNASAN BARANG NON MEDIS NO.FAKTUR "+no_faktur.getText()+", OLEH "+akses.getkode()); 
             }else{
@@ -1278,8 +1278,8 @@ private void BtnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     public void setData(String nofaktur){
         no_faktur.setText(nofaktur);
         TCari.setText(nofaktur);
-        sisahutang=Math.round(Sequel.cariIsiAngka("SELECT tagihan FROM inventaris_pemesanan where no_faktur=?",nofaktur)
-                   -Sequel.cariIsiAngka("SELECT ifnull(SUM(besar_bayar),0) FROM bayar_pemesanan_inventaris where no_faktur=?",nofaktur));
+        sisahutang=Math.round(Sequel.cariIsiAngka("SELECT inventaris_pemesanan.tagihan FROM inventaris_pemesanan where inventaris_pemesanan.no_faktur=?",nofaktur)
+                   -Sequel.cariIsiAngka("SELECT ifnull(SUM(bayar_pemesanan_inventaris.besar_bayar),0) FROM bayar_pemesanan_inventaris where bayar_pemesanan_inventaris.no_faktur=?",nofaktur));
         sisa_hutang.setText(Valid.SetAngka(sisahutang));
         besar_bayar.setText("0");
     }
@@ -1314,7 +1314,7 @@ private void BtnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             BtnPetugas.setEnabled(false);
             nip.setText(akses.getkode());
             BtnSimpan.setEnabled(akses.getbayar_pesan_non_medis());
-            Sequel.cariIsi("select nama from petugas where nip=?", nama_petugas,nip.getText());
+            Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?", nama_petugas,nip.getText());
         }else if(akses.getjml1()>=1){
             nip.setEditable(true);
             BtnPetugas.setEnabled(true);
@@ -1328,7 +1328,7 @@ private void BtnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
              file.createNewFile();
              fileWriter = new FileWriter(file);
              iyem="";
-             ps=koneksi.prepareStatement("select * from akun_bayar order by nama_bayar");
+             ps=koneksi.prepareStatement("select * from akun_bayar order by akun_bayar.nama_bayar");
              try{
                  rs=ps.executeQuery();
                  AkunBayar.removeAllItems();

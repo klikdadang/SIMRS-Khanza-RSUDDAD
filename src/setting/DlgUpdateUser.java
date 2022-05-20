@@ -686,7 +686,8 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                 "user.kategori_pemasukan_lain,user.pembayaran_akun_bayar5,user.ruang_ok,user.telaah_resep,user.jasa_tindakan_pasien,user.permintaan_resep_pulang,"+
                 "user.rekap_jm_dokter,user.status_data_rm,user.ubah_petugas_lab_pk,user.ubah_petugas_lab_pa,user.ubah_petugas_radiologi,user.gabung_norawat,"+
                 "user.gabung_rm,user.ringkasan_biaya_obat_pasien_pertanggal,user.master_masalah_keperawatan_igd,user.penilaian_awal_keperawatan_igd,"+
-                "user.bpjs_referensi_dpho_apotek from user where user.id_user=AES_ENCRYPT(?,'nur')");
+                "user.bpjs_referensi_dpho_apotek,user.bpjs_referensi_poli_apotek,user.bayar_jm_dokter,user.bpjs_referensi_faskes_apotek,user.bpjs_referensi_spesialistik_apotek,"+
+                "user.pembayaran_briva,user.penilaian_awal_keperawatan_ranap,user.nilai_penerimaan_vendor_farmasi_perbulan from user where user.id_user=AES_ENCRYPT(?,'nur')");
             try {
                 ps.setString(1,user);
                 rs=ps.executeQuery();
@@ -1293,6 +1294,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                     
                     if("[D]Ringkasan Biaya Obat Pasien Per Tanggal".toLowerCase().contains(TCari.getText().toLowerCase())){
                         tabMode.addRow(new Object[]{false,"[D]Ringkasan Biaya Obat Pasien Per Tanggal",rs.getBoolean("ringkasan_biaya_obat_pasien_pertanggal")});
+                    }
+                    
+                    if("[D]Nilai Penerimaan Vendor Farmasi Per Bulan".toLowerCase().contains(TCari.getText().toLowerCase())){
+                        tabMode.addRow(new Object[]{false,"[D]Nilai Penerimaan Vendor Farmasi Per Bulan",rs.getBoolean("nilai_penerimaan_vendor_farmasi_perbulan")});
                     }
                     
                     if("[E]Barang Non Medis".toLowerCase().contains(TCari.getText().toLowerCase())){
@@ -2291,6 +2296,14 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                         tabMode.addRow(new Object[]{false,"[J]Kategori Pemasukan Lain-lain",rs.getBoolean("kategori_pemasukan_lain")});
                     }
                     
+                    if("[J]Bayar JM Dokter".toLowerCase().contains(TCari.getText().toLowerCase())){
+                        tabMode.addRow(new Object[]{false,"[J]Bayar JM Dokter",rs.getBoolean("bayar_jm_dokter")});
+                    }
+                    
+                    if("[J]Pembayaran BRIVA".toLowerCase().contains(TCari.getText().toLowerCase())){
+                        tabMode.addRow(new Object[]{false,"[J]Pembayaran BRIVA",rs.getBoolean("pembayaran_briva")});
+                    }
+                    
                     if("[K]Cek NIK".toLowerCase().contains(TCari.getText().toLowerCase())){
                         tabMode.addRow(new Object[]{false,"[K]Cek NIK",rs.getBoolean("bpjs_cek_nik")});
                     }
@@ -2731,6 +2744,18 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                         tabMode.addRow(new Object[]{false,"[K]Referensi DPHO Apotek BPJS",rs.getBoolean("bpjs_referensi_dpho_apotek")});
                     }
                     
+                    if("[K]Referensi Poli Apotek BPJS".toLowerCase().contains(TCari.getText().toLowerCase())){
+                        tabMode.addRow(new Object[]{false,"[K]Referensi Poli Apotek BPJS",rs.getBoolean("bpjs_referensi_poli_apotek")});
+                    }
+                    
+                    if("[K]Referensi Faskes Apotek BPJS".toLowerCase().contains(TCari.getText().toLowerCase())){
+                        tabMode.addRow(new Object[]{false,"[K]Referensi Faskes Apotek BPJS",rs.getBoolean("bpjs_referensi_faskes_apotek")});
+                    }
+                    
+                    if("[K]Referensi Spesialistik Apotek BPJS".toLowerCase().contains(TCari.getText().toLowerCase())){
+                        tabMode.addRow(new Object[]{false,"[K]Referensi Spesialistik Apotek BPJS",rs.getBoolean("bpjs_referensi_spesialistik_apotek")});
+                    }
+                    
                     if("[L]Pasien".toLowerCase().contains(TCari.getText().toLowerCase())){
                         tabMode.addRow(new Object[]{false,"[L]Pasien",rs.getBoolean("pasien")});
                     }
@@ -2989,6 +3014,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                     
                     if("[L]Penilaian Awal Keperawatan IGD".toLowerCase().contains(TCari.getText().toLowerCase())){
                         tabMode.addRow(new Object[]{false,"[L]Penilaian Awal Keperawatan IGD",rs.getBoolean("penilaian_awal_keperawatan_igd")});
+                    }
+                    
+                    if("[L]Penilaian Awal Keperawatan Ranap Umum".toLowerCase().contains(TCari.getText().toLowerCase())){
+                        tabMode.addRow(new Object[]{false,"[L]Penilaian Awal Keperawatan Ranap Umum",rs.getBoolean("penilaian_awal_keperawatan_ranap")});
                     }
                     
                     if("[M]Pengambilan BHP Medis".toLowerCase().contains(TCari.getText().toLowerCase())){
@@ -4518,6 +4547,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","ringkasan_biaya_obat_pasien_pertanggal='"+tbUser.getValueAt(i,2).toString()+"'");
             }
             
+            if("[D]Nilai Penerimaan Vendor Farmasi Per Bulan".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","nilai_penerimaan_vendor_farmasi_perbulan='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
             if("[E]Barang Non Medis".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","ipsrs_barang='"+tbUser.getValueAt(i,2).toString()+"'");
             }
@@ -5513,6 +5546,14 @@ public class DlgUpdateUser extends javax.swing.JDialog {
             if("[J]Kategori Pemasukan Lain-lain".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","kategori_pemasukan_lain='"+tbUser.getValueAt(i,2).toString()+"'");
             }
+            
+            if("[J]Bayar JM Dokter".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","bayar_jm_dokter='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[J]Pembayaran BRIVA".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","pembayaran_briva='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
         }
     }
     
@@ -5958,6 +5999,18 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","bpjs_referensi_dpho_apotek='"+tbUser.getValueAt(i,2).toString()+"'");
             }
             
+            if("[K]Referensi Poli Apotek BPJS".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","bpjs_referensi_poli_apotek='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[K]Referensi Faskes Apotek BPJS".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","bpjs_referensi_faskes_apotek='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[K]Referensi Spesialistik Apotek BPJS".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","bpjs_referensi_spesialistik_apotek='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
             if("[L]Pasien".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","pasien='"+tbUser.getValueAt(i,2).toString()+"'");
             }
@@ -6216,6 +6269,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
             
             if("[L]Penilaian Awal Keperawatan IGD".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","penilaian_awal_keperawatan_igd='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[L]Penilaian Awal Keperawatan Ranap Umum".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","penilaian_awal_keperawatan_ranap='"+tbUser.getValueAt(i,2).toString()+"'");
             }
             
             if("[M]Pengambilan BHP Medis".equals(tbUser.getValueAt(i,1).toString())){

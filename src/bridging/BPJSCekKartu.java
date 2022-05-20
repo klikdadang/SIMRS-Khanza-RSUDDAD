@@ -1592,11 +1592,6 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         jLabel24 = new widget.Label();
         CMbPnd = new widget.ComboBox();
         Saudara = new widget.TextBox();
-        R5 = new widget.RadioButton();
-        R4 = new widget.RadioButton();
-        R3 = new widget.RadioButton();
-        R2 = new widget.RadioButton();
-        R1 = new widget.RadioButton();
         jLabel25 = new widget.Label();
         Kdpnj = new widget.TextBox();
         nmpnj = new widget.TextBox();
@@ -1622,7 +1617,6 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         BtnKelurahanPj = new widget.Button();
         KelurahanPj = new widget.TextBox();
         ChkRM = new widget.CekBox();
-        R6 = new widget.RadioButton();
         jLabel40 = new widget.Label();
         nmsukubangsa = new widget.TextBox();
         BtnSuku = new widget.Button();
@@ -1669,6 +1663,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         BtnJabatanPolri = new widget.Button();
         nmjabatanpolri = new widget.TextBox();
         LabelJabatanPolri = new widget.Label();
+        CmbKlg = new widget.ComboBox();
         FormKelengkapanSEP = new widget.PanelBiasa();
         jLabel4 = new widget.Label();
         TNoRw = new widget.TextBox();
@@ -1792,7 +1787,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
 
         DTPLahir.setEditable(false);
         DTPLahir.setForeground(new java.awt.Color(50, 70, 50));
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2021" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2021" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -2193,7 +2188,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         FormKelengkapanPasien.add(TNo);
         TNo.setBounds(107, 25, 160, 23);
 
-        DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2021" }));
+        DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2021" }));
         DTPDaftar.setDisplayFormat("dd-MM-yyyy");
         DTPDaftar.setName("DTPDaftar"); // NOI18N
         DTPDaftar.setOpaque(false);
@@ -2233,43 +2228,6 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         });
         FormKelengkapanPasien.add(Saudara);
         Saudara.setBounds(534, 145, 142, 23);
-
-        buttonGroup1.add(R5);
-        R5.setSelected(true);
-        R5.setText("Saudara");
-        R5.setIconTextGap(0);
-        R5.setName("R5"); // NOI18N
-        FormKelengkapanPasien.add(R5);
-        R5.setBounds(750, 115, 60, 23);
-
-        buttonGroup1.add(R4);
-        R4.setText("Suami");
-        R4.setIconTextGap(0);
-        R4.setName("R4"); // NOI18N
-        FormKelengkapanPasien.add(R4);
-        R4.setBounds(690, 115, 50, 23);
-
-        buttonGroup1.add(R3);
-        R3.setText("Istri");
-        R3.setIconTextGap(0);
-        R3.setName("R3"); // NOI18N
-        FormKelengkapanPasien.add(R3);
-        R3.setBounds(640, 115, 44, 23);
-
-        buttonGroup1.add(R2);
-        R2.setText("Ibu");
-        R2.setIconTextGap(0);
-        R2.setName("R2"); // NOI18N
-        FormKelengkapanPasien.add(R2);
-        R2.setBounds(592, 115, 40, 23);
-
-        buttonGroup1.add(R1);
-        R1.setText("Ayah");
-        R1.setIconTextGap(0);
-        R1.setName("R1"); // NOI18N
-        R1.setPreferredSize(new java.awt.Dimension(40, 20));
-        FormKelengkapanPasien.add(R1);
-        R1.setBounds(534, 115, 46, 23);
 
         jLabel25.setText("Askes/Asuransi :");
         jLabel25.setName("jLabel25"); // NOI18N
@@ -2580,13 +2538,6 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         });
         FormKelengkapanPasien.add(ChkRM);
         ChkRM.setBounds(269, 25, 23, 23);
-
-        buttonGroup1.add(R6);
-        R6.setText("Anak");
-        R6.setIconTextGap(0);
-        R6.setName("R6"); // NOI18N
-        FormKelengkapanPasien.add(R6);
-        R6.setBounds(825, 115, 60, 23);
 
         jLabel40.setText("Suku/Bangsa :");
         jLabel40.setName("jLabel40"); // NOI18N
@@ -3000,6 +2951,22 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         FormKelengkapanPasien.add(LabelJabatanPolri);
         LabelJabatanPolri.setBounds(441, 445, 135, 23);
 
+        CmbKlg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AYAH", "IBU", "ISTRI", "SUAMI", "SAUDARA", "ANAK", "PAMAN/BIBI", "KAKEK/NENEK", "CUCU", "SEPUPU", "TETANGGA", "TEMAN", "DIRI SENDIRI" }));
+        CmbKlg.setLightWeightPopupEnabled(false);
+        CmbKlg.setName("CmbKlg"); // NOI18N
+        CmbKlg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbKlgActionPerformed(evt);
+            }
+        });
+        CmbKlg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CmbKlgKeyPressed(evt);
+            }
+        });
+        FormKelengkapanPasien.add(CmbKlg);
+        CmbKlg.setBounds(534, 115, 155, 23);
+
         FormInput.add(FormKelengkapanPasien);
 
         FormKelengkapanSEP.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)), "::[ Kelengkapan Data SEP, Registrasi & Kamar Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
@@ -3025,7 +2992,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         FormKelengkapanSEP.add(jLabel23);
         jLabel23.setBounds(295, 355, 54, 23);
 
-        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2021 15:56:18" }));
+        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2021 06:42:24" }));
         TanggalSEP.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TanggalSEP.setName("TanggalSEP"); // NOI18N
         TanggalSEP.setOpaque(false);
@@ -3044,7 +3011,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         FormKelengkapanSEP.add(jLabel30);
         jLabel30.setBounds(341, 325, 50, 23);
 
-        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2021" }));
+        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2021" }));
         TanggalRujuk.setDisplayFormat("dd-MM-yyyy");
         TanggalRujuk.setName("TanggalRujuk"); // NOI18N
         TanggalRujuk.setOpaque(false);
@@ -3270,7 +3237,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
             }
         });
         FormKelengkapanSEP.add(LakaLantas);
-        LakaLantas.setBounds(589, 25, 131, 23);
+        LakaLantas.setBounds(589, 25, 101, 23);
 
         jLabel5.setText("No. Reg. :");
         jLabel5.setName("jLabel5"); // NOI18N
@@ -3428,7 +3395,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         jLabel47.setBounds(724, 25, 90, 23);
 
         TanggalKKL.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalKKL.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2021" }));
+        TanggalKKL.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2021" }));
         TanggalKKL.setDisplayFormat("dd-MM-yyyy");
         TanggalKKL.setEnabled(false);
         TanggalKKL.setName("TanggalKKL"); // NOI18N
@@ -4010,13 +3977,12 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
             //TCari.requestFocus();
         }else if(tabMode.getRowCount()!=0){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            
-            Sequel.queryu("truncate table temporary");
+            Sequel.queryu("delete from temporary where temp37='"+akses.getalamatip()+"'");
             int row=tabMode.getRowCount();
             for(int r=0;r<row;r++){  
-                Sequel.menyimpan("temporary","'0','"+
+                Sequel.menyimpan("temporary","'"+r+"','"+
                                 tabMode.getValueAt(r,0).toString()+"','"+
-                                tabMode.getValueAt(r,1).toString()+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Rekap Harian Pengadaan Ipsrs"); 
+                                tabMode.getValueAt(r,1).toString()+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','"+akses.getalamatip()+"'","Rekap Harian Pengadaan Ipsrs"); 
             }
             
             Map<String, Object> param = new HashMap<>();                 
@@ -4027,7 +3993,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());   
             param.put("logo",Sequel.cariGambar("select logo from setting")); 
-            Valid.MyReport("rptCariBPJSNoPeserta.jasper","report","[ Pencarian Peserta BPJS Berdasarkan Nomor Kepesertaan ]",param);
+            Valid.MyReportqry("rptCariBPJSNoPeserta.jasper","report","[ Pencarian Peserta BPJS Berdasarkan Nomor Kepesertaan ]","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
             this.setCursor(Cursor.getDefaultCursor());
         }        
     }//GEN-LAST:event_BtnPrintActionPerformed
@@ -4779,7 +4745,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
             BtnSatuanTNI.setEnabled(false);
             BtnJabatanTNI.setEnabled(false);
             BtnPangkatTNI.setEnabled(false);
-            R5.setSelected(true);
+            CmbKlg.setSelectedIndex(0);
             LakaLantas.setSelectedIndex(0);
             Katarak.setSelectedIndex(0);        
             Suplesi.setSelectedIndex(0);
@@ -5596,6 +5562,14 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_ppStatusFingerBtnPrintActionPerformed
 
+    private void CmbKlgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbKlgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CmbKlgActionPerformed
+
+    private void CmbKlgKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CmbKlgKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CmbKlgKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -5650,6 +5624,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
     private widget.CekBox ChkCari;
     private widget.CekBox ChkRM;
     private widget.ComboBox CmbJk;
+    private widget.ComboBox CmbKlg;
     private widget.ComboBox CmbStts;
     private widget.Tanggal DTPDaftar;
     private widget.Tanggal DTPLahir;
@@ -5724,12 +5699,6 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
     private widget.ComboBox Penunjang;
     private widget.TextBox Propinsi;
     private widget.TextBox PropinsiPj;
-    private widget.RadioButton R1;
-    private widget.RadioButton R2;
-    private widget.RadioButton R3;
-    private widget.RadioButton R4;
-    private widget.RadioButton R5;
-    private widget.RadioButton R6;
     private widget.TextBox Saudara;
     private widget.ScrollPane Scroll;
     private widget.ComboBox Suplesi;
@@ -6046,26 +6015,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
                         nmcacat.setText(rs.getString("nama_cacat"));
                         kdperusahaan.setText(rs.getString("kode_perusahaan"));
                         nmperusahaan.setText(rs.getString("nama_perusahaan"));                        
-                        switch (rs.getString("namakeluarga")) {
-                            case "AYAH":
-                                R1.setSelected(true);
-                                break;
-                            case "IBU":
-                                R2.setSelected(true);
-                                break;
-                            case "ISTRI":
-                                R3.setSelected(true);
-                                break;
-                            case "SUAMI":  
-                                R4.setSelected(true);
-                                break;
-                            case "SAUDARA":
-                                R5.setSelected(true);
-                                break;
-                            case "ANAK":
-                                R6.setSelected(true);
-                                break;
-                        } 
+                        CmbKlg.setSelectedItem(rs.getString("namakeluarga"));
                         if(tampilkantni.equals("Yes")){
                             pstni=koneksi.prepareStatement(
                                 "select pasien_tni.no_rkm_medis,pasien_tni.golongan_tni,golongan_tni.nama_golongan,"+
@@ -6293,7 +6243,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         BtnSatuanTNI.setEnabled(false);
         BtnJabatanTNI.setEnabled(false);
         BtnPangkatTNI.setEnabled(false);
-        R5.setSelected(true);
+        CmbKlg.setSelectedIndex(0);
         DTPLahir.setDate(new Date());
         DTPDaftar.setDate(new Date());
         TNoReg.setText("");
@@ -6760,7 +6710,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
             if(Sequel.menyimpantf2("reg_periksa","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",19,
                     new String[]{TNoReg.getText(),TNoRw.getText(),Valid.SetTgl(TanggalSEP.getSelectedItem()+""),TanggalSEP.getSelectedItem().toString().substring(11,19),
                     kddokter.getText(),TNo.getText(),kdpoli.getText(),Saudara.getText(),AlamatPj.getText()+", "+KelurahanPj.getText()+", "+KecamatanPj.getText()+", "+KabupatenPj.getText(),
-                    klg,TBiaya.getText(),"Belum",statuspasien,"Ralan",Kdpnj.getText(),umurdaftar,sttsumur,"Belum Bayar",status
+                    CmbKlg.getSelectedItem().toString(),TBiaya.getText(),"Belum",statuspasien,"Ralan",Kdpnj.getText(),umurdaftar,sttsumur,"Belum Bayar",status
                 })==true){
                     UpdateUmur();
                     if(nosisrute.equals("")){
@@ -6787,7 +6737,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
             if(Sequel.menyimpantf2("reg_periksa","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",19,
                     new String[]{TNoReg.getText(),TNoRw.getText(),Valid.SetTgl(TanggalSEP.getSelectedItem()+""),TanggalSEP.getSelectedItem().toString().substring(11,19),
                     kddokter.getText(),TNo.getText(),"IGDK",Saudara.getText(),AlamatPj.getText()+", "+KelurahanPj.getText()+", "+KecamatanPj.getText()+", "+KabupatenPj.getText(),
-                    klg,Sequel.cariIsi("select registrasilama from poliklinik where kd_poli='IGDK'"),"Belum",statuspasien,"Ralan",Kdpnj.getText(),umurdaftar,sttsumur,"Belum Bayar",status
+                    CmbKlg.getSelectedItem().toString(),Sequel.cariIsi("select registrasilama from poliklinik where kd_poli='IGDK'"),"Belum",statuspasien,"Ralan",Kdpnj.getText(),umurdaftar,sttsumur,"Belum Bayar",status
                 })==true){
                     UpdateUmur();
                     if(nosisrute.equals("")){
@@ -6826,20 +6776,6 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
     }
 
     private void insertPasien() {
-        if(R1.isSelected()==true){
-            klg="AYAH";
-        }else if(R2.isSelected()==true){
-            klg="IBU";
-        }else if(R3.isSelected()==true){
-            klg="ISTRI";
-        }else if(R4.isSelected()==true){
-            klg="SUAMI";
-        }else if(R5.isSelected()==true){
-            klg="SAUDARA";
-        }else if(R6.isSelected()==true){
-            klg="ANAK";
-        }    
-        
         if(Kelurahan.isEditable()==true){
             Sequel.queryu4("insert into kelurahan values(?,?)",2,new String[]{"0",Kelurahan.getText().replaceAll("KELURAHAN","-")});
             kdkel=Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?",Kelurahan.getText().replaceAll("KELURAHAN","-"));
@@ -6887,7 +6823,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
                     Valid.SetTgl(DTPLahir.getSelectedItem()+""),NmIbu.getText(),
                     Alamat.getText().replaceAll("ALAMAT",""),CMbGd.getSelectedItem().toString(),Pekerjaan.getText(),CmbStts.getSelectedItem().toString(),cmbAgama.getSelectedItem().toString(),
                     DTPDaftar.getSelectedItem().toString().substring(6,10)+"-"+DTPDaftar.getSelectedItem().toString().substring(3,5)+"-"+DTPDaftar.getSelectedItem().toString().substring(0,2),
-                    TTlp.getText(),TUmur.getText(),CMbPnd.getSelectedItem().toString(),klg,Saudara.getText(),Kdpnj.getText(),TNoPeserta.getText(),
+                    TTlp.getText(),TUmur.getText(),CMbPnd.getSelectedItem().toString(),CmbKlg.getSelectedItem().toString(),Saudara.getText(),Kdpnj.getText(),TNoPeserta.getText(),
                     kdkel,kdkec,kdkab,PekerjaanPj.getText(),AlamatPj.getText(),KelurahanPj.getText(),KecamatanPj.getText(),KabupatenPj.getText(),kdperusahaan.getText(),
                     kdsuku.getText(),kdbahasa.getText(),kdcacat.getText(),EMail.getText(),NIP.getText(),kdprop,PropinsiPj.getText()
                 })==true){
@@ -6915,7 +6851,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
                         Valid.SetTgl(DTPLahir.getSelectedItem()+""),NmIbu.getText(),
                         Alamat.getText().replaceAll("ALAMAT",""),CMbGd.getSelectedItem().toString(),Pekerjaan.getText(),CmbStts.getSelectedItem().toString(),cmbAgama.getSelectedItem().toString(),
                         DTPDaftar.getSelectedItem().toString().substring(6,10)+"-"+DTPDaftar.getSelectedItem().toString().substring(3,5)+"-"+DTPDaftar.getSelectedItem().toString().substring(0,2),
-                        TTlp.getText(),TUmur.getText(),CMbPnd.getSelectedItem().toString(),klg,Saudara.getText(),Kdpnj.getText(),TNoPeserta.getText(),
+                        TTlp.getText(),TUmur.getText(),CMbPnd.getSelectedItem().toString(),CmbKlg.getSelectedItem().toString(),Saudara.getText(),Kdpnj.getText(),TNoPeserta.getText(),
                         kdkel,kdkec,kdkab,PekerjaanPj.getText(),AlamatPj.getText(),KelurahanPj.getText(),KecamatanPj.getText(),KabupatenPj.getText(),kdperusahaan.getText(),
                         kdsuku.getText(),kdbahasa.getText(),kdcacat.getText(),EMail.getText(),NIP.getText(),kdprop,PropinsiPj.getText()
                     })==true){
@@ -6963,7 +6899,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
                     Valid.SetTgl(DTPLahir.getSelectedItem()+""),
                     Alamat.getText(),CMbGd.getSelectedItem().toString(),Pekerjaan.getText(),CmbStts.getSelectedItem().toString(),cmbAgama.getSelectedItem().toString(),
                     DTPDaftar.getSelectedItem().toString().substring(6,10)+"-"+DTPDaftar.getSelectedItem().toString().substring(3,5)+"-"+DTPDaftar.getSelectedItem().toString().substring(0,2),
-                    TTlp.getText(),TUmur.getText(),CMbPnd.getSelectedItem().toString(),klg,Saudara.getText(),Kdpnj.getText(),TNoPeserta.getText(),
+                    TTlp.getText(),TUmur.getText(),CMbPnd.getSelectedItem().toString(),CmbKlg.getSelectedItem().toString(),Saudara.getText(),Kdpnj.getText(),TNoPeserta.getText(),
                     kdkel,kdkec,kdkab,NmIbu.getText(),PekerjaanPj.getText(),AlamatPj.getText(),KelurahanPj.getText(),KecamatanPj.getText(),
                     KabupatenPj.getText(),kdperusahaan.getText(),kdsuku.getText(),kdbahasa.getText(),kdcacat.getText(),EMail.getText(),NIP.getText(),
                     kdprop,PropinsiPj.getText(),TNo.getText()

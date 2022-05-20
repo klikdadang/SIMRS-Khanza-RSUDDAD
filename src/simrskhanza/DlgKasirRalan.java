@@ -4659,7 +4659,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         panelBiasa2.setLayout(null);
 
         TglSakit1.setForeground(new java.awt.Color(50, 70, 50));
-        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2022" }));
+        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-04-2022" }));
         TglSakit1.setDisplayFormat("dd-MM-yyyy");
         TglSakit1.setName("TglSakit1"); // NOI18N
         TglSakit1.setOpaque(false);
@@ -4706,7 +4706,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel32.setBounds(176, 10, 20, 23);
 
         TglSakit2.setForeground(new java.awt.Color(50, 70, 50));
-        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2022" }));
+        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-04-2022" }));
         TglSakit2.setDisplayFormat("dd-MM-yyyy");
         TglSakit2.setName("TglSakit2"); // NOI18N
         TglSakit2.setOpaque(false);
@@ -4978,7 +4978,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2022" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-04-2022" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4991,7 +4991,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2022" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-04-2022" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6365,6 +6365,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 Sequel.queryu("delete from piutang_pasien where no_rawat='"+TNoRw.getText()+"'");
                 Sequel.queryu("delete from prosedur_pasien where no_rawat='"+TNoRw.getText()+"'");
                 Sequel.queryu("delete from ranap_gabung where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from rvp_klaim_bpjs where no_rawat='"+TNoRw.getText()+"'");
                 Sequel.queryu("delete from rujuk where no_rawat='"+TNoRw.getText()+"'");
                 Sequel.queryu("delete from rujuk_masuk where no_rawat='"+TNoRw.getText()+"'");
                 Sequel.queryu("delete from tambahan_biaya where no_rawat='"+TNoRw.getText()+"'");
@@ -6401,6 +6402,23 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 Sequel.queryu("delete from pcare_pendaftaran where no_rawat='"+TNoRw.getText()+"'");
                 Sequel.queryu("delete from detail_penagihan_piutang where no_rawat='"+TNoRw.getText()+"'");
                 Sequel.queryu("delete from permintaan_stok_obat_pasien where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_detail_periksa_lab where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_detail_periksa_lab_perujuk where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_operasi_dokter_anak where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_operasi_dokter_anestesi where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_operasi_dokter_pjanak where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_operasi_dokter_umum where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_operasi_operator1 where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_operasi_operator2 where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_operasi_operator3 where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_periksa_lab where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_periksa_lab_perujuk where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_periksa_radiologi where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_periksa_radiologi_perujuk where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_rawat_inap_dr where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_rawat_inap_drpr where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_rawat_jl_dr where no_rawat='"+TNoRw.getText()+"'");
+                Sequel.queryu("delete from bayar_rawat_jl_drpr where no_rawat='"+TNoRw.getText()+"'");
                 Sequel.queryu("delete from reg_periksa where no_rawat='"+TNoRw.getText()+"'");
 
                 tampilkasir();

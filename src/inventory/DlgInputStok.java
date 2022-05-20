@@ -70,7 +70,7 @@ public class DlgInputStok extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        Object[] row={"Real","Kode Barang","Nama Barang","Kategori","Satuan","Harga","Stok","Selisih","Lebih","Nominal Hilang(Rp)","Nominal Lebih(Rp)","No.Batch","No.Faktur"};
+        Object[] row={"Real","Kode Barang","Nama Barang","Jenis","Satuan","Harga","Stok","Selisih","Lebih","Nominal Hilang(Rp)","Nominal Lebih(Rp)","No.Batch","No.Faktur"};
         tabMode=new DefaultTableModel(null,row){
             @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 boolean a = false;
@@ -1194,16 +1194,16 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 TCari.requestFocus();
             }else if(tabMode.getRowCount()!=0){
 
-                Sequel.queryu("truncate table temporary");
+                Sequel.queryu("delete from temporary where temp37='"+akses.getalamatip()+"'");
                 int row=tabMode.getRowCount();
                 for(int i=0;i<row;i++){  
-                    Sequel.menyimpan("temporary","'0','"+
+                    Sequel.menyimpan("temporary","'"+i+"','"+
                                     tabMode.getValueAt(i,1).toString()+"','"+
                                     tabMode.getValueAt(i,2).toString()+"','"+
                                     tabMode.getValueAt(i,3).toString()+"','"+
                                     tabMode.getValueAt(i,4).toString()+"','"+
                                     tabMode.getValueAt(i,5).toString()+"','"+
-                                    tabMode.getValueAt(i,6).toString()+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Transaksi Penerimaan"); 
+                                    tabMode.getValueAt(i,6).toString()+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','"+akses.getalamatip()+"'","Transaksi Penerimaan"); 
                 }
 
                 Map<String, Object> param = new HashMap<>();    
@@ -1215,7 +1215,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 param.put("emailrs",akses.getemailrs());  
                 param.put("bangsal",nmgudang.getText());    
                 param.put("logo",Sequel.cariGambar("select logo from setting")); 
-                Valid.MyReport("rptInputStokOpname.jasper","report","::[ Data Persediaan Stok Ruangan ]::",param);
+                Valid.MyReportqry("rptInputStokOpname.jasper","report","::[ Data Persediaan Stok Ruangan ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
             }
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -1473,7 +1473,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     if(Double.parseDouble(tabMode.getValueAt(i,0).toString())>=0){
                         stokbarang=0;   
                         if(aktifkanbatch.equals("yes")){
-                            psstok=koneksi.prepareStatement("select ifnull(stok,'0') from gudangbarang where kd_bangsal=? and kode_brng=? and no_batch=? and no_faktur=?");
+                            psstok=koneksi.prepareStatement("select ifnull(gudangbarang.stok,'0') from gudangbarang where gudangbarang.kd_bangsal=? and gudangbarang.kode_brng=? and gudangbarang.no_batch=? and gudangbarang.no_faktur=?");
                             try{
                                 psstok.setString(1,kdgudang.getText());
                                 psstok.setString(2,tbDokter.getValueAt(i,1).toString());
@@ -1494,7 +1494,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                 }
                             }
                         }else{
-                            psstok=koneksi.prepareStatement("select ifnull(stok,'0') from gudangbarang where kd_bangsal=? and kode_brng=? and no_batch='' and no_faktur=''");
+                            psstok=koneksi.prepareStatement("select ifnull(gudangbarang.stok,'0') from gudangbarang where gudangbarang.kd_bangsal=? and gudangbarang.kode_brng=? and gudangbarang.no_batch='' and gudangbarang.no_faktur=''");
                             try{
                                 psstok.setString(1,kdgudang.getText());
                                 psstok.setString(2,tbDokter.getValueAt(i,1).toString());
@@ -1516,7 +1516,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                             
                         tbDokter.setValueAt(stokbarang,i,6);
 
-                        harga=Sequel.cariIsiAngka("select "+hppfarmasi+" as dasar from data_batch where kode_brng='"+tbDokter.getValueAt(i,1).toString()+"' and no_batch='"+tbDokter.getValueAt(i,11).toString()+"' and no_faktur='"+tbDokter.getValueAt(i,12).toString()+"'");
+                        harga=Sequel.cariIsiAngka("select data_batch."+hppfarmasi+" as dasar from data_batch where data_batch.kode_brng='"+tbDokter.getValueAt(i,1).toString()+"' and no_batch='"+tbDokter.getValueAt(i,11).toString()+"' and no_faktur='"+tbDokter.getValueAt(i,12).toString()+"'");
                         if(harga>0){
                             tbDokter.setValueAt(harga,i,5);
                         }
@@ -1589,7 +1589,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
          if(!akses.getkode().equals("Admin Utama")){
             if(!DEPOAKTIFOBAT.equals("")){
                 kdgudang.setText(DEPOAKTIFOBAT);
-                nmgudang.setText(Sequel.cariIsi("select nm_bangsal from bangsal where kd_bangsal=?",DEPOAKTIFOBAT));
+                nmgudang.setText(Sequel.cariIsi("select bangsal.nm_bangsal from bangsal where bangsal.kd_bangsal=?",DEPOAKTIFOBAT));
                 BtnGudang.setEnabled(false);
             }
         }

@@ -44,6 +44,7 @@ public class DlgCariPemesanan extends javax.swing.JDialog {
     private Jurnal jur=new Jurnal();
     private String aktifkanbatch="no",tanggal= "",datanofaktur="",datasuplier="",datapetugas="",datajenis="",databarang="",dataindustri="",datacari="",statusbayar="";
     private boolean sukses=true;
+    private int i=0;
 
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -70,7 +71,7 @@ public class DlgCariPemesanan extends javax.swing.JDialog {
         tbDokter.setPreferredScrollableViewportSize(new Dimension(800,800));
         tbDokter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 11; i++) {
+        for (i = 0; i < 11; i++) {
             TableColumn column = tbDokter.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(120);
@@ -633,7 +634,7 @@ public class DlgCariPemesanan extends javax.swing.JDialog {
         label24.setName("label24"); // NOI18N
         label24.setPreferredSize(new java.awt.Dimension(48, 23));
         panelisi4.add(label24);
-        label24.setBounds(187, 10, 45, 23);
+        label24.setBounds(183, 10, 45, 23);
 
         kdjenis.setName("kdjenis"); // NOI18N
         kdjenis.setPreferredSize(new java.awt.Dimension(80, 23));
@@ -674,7 +675,7 @@ public class DlgCariPemesanan extends javax.swing.JDialog {
         panelisi4.add(label21);
         label21.setBounds(0, 10, 53, 23);
 
-        Status.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Sudah Dibayar", "Belum Dibayar", "Belum Lunas" }));
+        Status.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Sudah Dibayar", "Belum Dibayar", "Belum Lunas", "Titip Faktur" }));
         Status.setName("Status"); // NOI18N
         Status.setPreferredSize(new java.awt.Dimension(40, 23));
         panelisi4.add(Status);
@@ -1159,11 +1160,10 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
             TCari.requestFocus();
         }else if(tabMode.getRowCount()!=0){
-            
-            Sequel.queryu("truncate table temporary");
+            Sequel.queryu("delete from temporary where temp37='"+akses.getalamatip()+"'");
             int row=tabMode.getRowCount();
-            for(int i=0;i<row;i++){  
-                Sequel.menyimpan("temporary","'0','"+
+            for(i=0;i<row;i++){  
+                Sequel.menyimpan("temporary","'"+i+"','"+
                                 tabMode.getValueAt(i,0).toString()+"','"+
                                 tabMode.getValueAt(i,1).toString()+"','"+
                                 tabMode.getValueAt(i,2).toString()+"','"+
@@ -1171,21 +1171,22 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                                 tabMode.getValueAt(i,4).toString()+"','"+
                                 tabMode.getValueAt(i,5).toString()+"','"+
                                 tabMode.getValueAt(i,6).toString()+"','"+
-                                tabMode.getValueAt(i,10).toString()+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Transaksi Penerimaan"); 
+                                tabMode.getValueAt(i,10).toString()+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','"+akses.getalamatip()+"'","Transaksi Penerimaan"); 
             }
-            Sequel.menyimpan("temporary","'0','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Transaksi Penerimaan"); 
-            Sequel.menyimpan("temporary","'0','Jml.Total :','','','','','','','"+LTotal.getText()+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Transaksi Penerimaan"); 
-            
+            i++;
+            Sequel.menyimpan("temporary","'"+i+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','"+akses.getalamatip()+"'","Transaksi Penerimaan"); 
+            i++;
+            Sequel.menyimpan("temporary","'"+i+"','Jml.Total :','','','','','','','"+LTotal.getText()+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','"+akses.getalamatip()+"'","Transaksi Penerimaan"); 
             
             Map<String, Object> param = new HashMap<>();    
-                param.put("namars",akses.getnamars());
-                param.put("alamatrs",akses.getalamatrs());
-                param.put("kotars",akses.getkabupatenrs());
-                param.put("propinsirs",akses.getpropinsirs());
-                param.put("kontakrs",akses.getkontakrs());
-                param.put("emailrs",akses.getemailrs());   
-                param.put("logo",Sequel.cariGambar("select logo from setting")); 
-            Valid.MyReport("rptPemesanan.jasper","report","::[ Transaksi Penerimaan Barang ]::",param);
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());   
+            param.put("logo",Sequel.cariGambar("select logo from setting")); 
+            Valid.MyReportqry("rptPemesanan.jasper","report","::[ Transaksi Penerimaan Barang ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
         }
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnPrintActionPerformed
@@ -1210,14 +1211,15 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
           int reply = JOptionPane.showConfirmDialog(rootPane,"Eeiiiiiits, yakin mau dihapus...??","Konfirmasi",JOptionPane.YES_NO_OPTION);
           if (reply == JOptionPane.YES_OPTION) {
               try {
-                  pscaripesan=koneksi.prepareStatement("select no_faktur, tagihan, kd_bangsal,tgl_faktur,status,no_order from pemesanan where no_faktur=?");
+                  pscaripesan=koneksi.prepareStatement(
+                        "select pemesanan.no_faktur, pemesanan.tagihan, pemesanan.kd_bangsal,pemesanan.tgl_faktur,pemesanan.status,pemesanan.no_order,pemesanan.ppn,(pemesanan.total2+pemesanan.meterai) as total from pemesanan where pemesanan.no_faktur=?");
                   try {
                      pscaripesan.setString(1,tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString());
                      rs=pscaripesan.executeQuery();
                      if(rs.next()){
                          Sequel.AutoComitFalse();
                          sukses=true;
-                         psdetailpesan=koneksi.prepareStatement("select kode_brng,jumlah2,no_batch,no_faktur from detailpesan where no_faktur=? ");
+                         psdetailpesan=koneksi.prepareStatement("select detailpesan.kode_brng,detailpesan.jumlah2,detailpesan.no_batch,detailpesan.no_faktur from detailpesan where detailpesan.no_faktur=? ");
                          try {
                              psdetailpesan.setString(1,rs.getString(1));
                              rs2=psdetailpesan.executeQuery();
@@ -1254,10 +1256,15 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                          if(sukses==true){
                             Sequel.queryu("delete from tampjurnal");
                             Sequel.menyimpan("tampjurnal","?,?,?,?","Rekening",4,new String[]{
-                                Sequel.cariIsi("select Pemesanan_Obat from set_akun"),"PERSEDIAAN BARANG","0",rs.getString("tagihan")
-                            });    
+                                Sequel.cariIsi("select set_akun.Pemesanan_Obat from set_akun"),"PERSEDIAAN BARANG","0",rs.getString("total")
+                            });   
+                            if(rs.getDouble("ppn")>0){
+                                Sequel.menyimpan("tampjurnal","?,?,?,?","Rekening",4,new String[]{
+                                    Sequel.cariIsi("select set_akun.PPN_Masukan from set_akun"),"PPN Masukan Obat","0",rs.getString("ppn")
+                                }); 
+                            }
                             Sequel.menyimpan("tampjurnal","?,?,?,?","Rekening",4,new String[]{
-                                Sequel.cariIsi("select Kontra_Pemesanan_Obat from set_akun"),"HUTANG USAHA",rs.getString("tagihan"),"0"
+                                Sequel.cariIsi("select set_akun.Kontra_Pemesanan_Obat from set_akun"),"HUTANG USAHA",rs.getString("tagihan"),"0"
                             }); 
                             sukses=jur.simpanJurnal(rs.getString("no_faktur"),"U","BATAL TRANSAKSI PENERIMAAN BARANG DI "+Sequel.cariIsi("select nm_bangsal from bangsal where kd_bangsal=?",rs.getString("kd_bangsal")).toUpperCase()+", OLEH "+akses.getkode()); 
                          }
@@ -1672,7 +1679,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private void panggilPhoto() {
         if(FormPhoto.isVisible()==true){
             try {
-                ps=koneksi.prepareStatement("select photo from bukti_pemesanan where no_faktur=?");
+                ps=koneksi.prepareStatement("select bukti_pemesanan.photo from bukti_pemesanan where bukti_pemesanan.no_faktur=?");
                 try {
                     ps.setString(1,tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString());
                     rs=ps.executeQuery();
